@@ -1,0 +1,67 @@
+// This is your Prisma schema file
+// Learn more about Prisma in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to improve query performance or scale efficiently?
+// Consider Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Entrepot {
+  id_entrepot  String @id @default(uuid())
+  nom_entrepot String @db.VarChar(255)
+  localisation String @db.VarChar(255)
+  capacite     Int
+
+  engins Engin[]
+}
+
+model Engin {
+  matricule   String @id
+  id_type     String
+  id_entrepot String
+  etat        String @db.VarChar(255)
+
+  entrepot Entrepot @relation(fields: [id_entrepot], references: [id_entrepot])
+
+  avoir Avoir[]
+}
+
+model Avoir {
+  id          Int    @id
+  matricule   String
+  id_location String
+
+  location Location @relation(fields: [id_location], references: [id_location])
+  engin    Engin?   @relation(fields: [matricule], references: [matricule])
+}
+
+model Location {
+  id_location    String   @id @default(uuid())
+  id_clients     String
+  datedebut      DateTime
+  datefin        DateTime
+  statutPaiement String   @db.VarChar(255)
+  destination    String   @db.VarChar(255)
+
+  client Client @relation(fields: [id_clients], references: [id_client])
+
+  avoir Avoir[]
+}
+
+model Client {
+  id_client           String @id @default(uuid())
+  nomclient           String @db.VarChar(255)
+  email               String @unique
+  telephone           String @unique
+  numerocartebancaire String @unique
+  codesecurite        String @unique
+
+  locations Location[]
+}
