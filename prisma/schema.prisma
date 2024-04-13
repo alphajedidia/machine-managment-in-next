@@ -33,6 +33,21 @@ model Engin {
   avoir Avoir[]
 }
 
+model type_engin {
+  id_type         String    @id
+  id_categorie    String
+  nom_engin       String
+  prix_journalier Int
+  categorie       Categorie @relation(fields: [id_categorie], references: [id_categorie])
+}
+
+model Categorie {
+  id_categorie  String       @id
+  nom_categorie String
+  detail        String
+  type_engin    type_engin[]
+}
+
 model Avoir {
   id          Int    @id
   matricule   String
@@ -43,12 +58,12 @@ model Avoir {
 }
 
 model Location {
-  id_location    String   @id @default(uuid())
-  id_clients     String
-  datedebut      DateTime
-  datefin        DateTime
-  statutPaiement String   @db.VarChar(255)
-  destination    String   @db.VarChar(255)
+  id_location     String   @id @default(uuid())
+  id_clients      String
+  date_debut      DateTime
+  date_fin        DateTime
+  statut_paiement String   @db.VarChar(255)
+  destination     String   @db.VarChar(255)
 
   client Client @relation(fields: [id_clients], references: [id_client])
 
@@ -56,12 +71,12 @@ model Location {
 }
 
 model Client {
-  id_client           String @id @default(uuid())
-  nomclient           String @db.VarChar(255)
-  email               String @unique
-  telephone           String @unique
-  numerocartebancaire String @unique
-  codesecurite        String @unique
+  id_client             String @id @default(uuid())
+  nomclient             String @db.VarChar(255)
+  email                 String @unique
+  telephone             String @unique
+  numero_carte_bancaire String @unique
+  codesecurite          String @unique
 
   locations Location[]
 }
