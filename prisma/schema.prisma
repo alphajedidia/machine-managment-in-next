@@ -23,33 +23,35 @@ model Entrepot {
 }
 
 model Engin {
-  matricule   String @id
+  matricule   String     @id
   id_type     String
   id_entrepot String
-  etat        String @db.VarChar(255)
+  etat        String     @db.VarChar(255)
+  type_engin  Type_engin @relation(fields: [id_type], references: [id_type])
+  entrepot    Entrepot   @relation(fields: [id_entrepot], references: [id_entrepot])
 
-  entrepot Entrepot @relation(fields: [id_entrepot], references: [id_entrepot])
-
-  avoir Avoir[]
+  avoirs Avoir[]
 }
 
-model type_engin {
+model Type_engin {
   id_type         String    @id
   id_categorie    String
+  image_url       String
   nom_engin       String
   prix_journalier Int
   categorie       Categorie @relation(fields: [id_categorie], references: [id_categorie])
+  Engin           Engin[]
 }
 
 model Categorie {
   id_categorie  String       @id
-  nom_categorie String
+  nom_categorie String       @db.VarChar(255)
   detail        String
-  type_engin    type_engin[]
+  type_engins   Type_engin[]
 }
 
 model Avoir {
-  id          Int    @id
+  id          Int    @id @default(autoincrement())
   matricule   String
   id_location String
 
@@ -59,24 +61,24 @@ model Avoir {
 
 model Location {
   id_location     String   @id @default(uuid())
-  id_clients      String
+  id_client       String
   date_debut      DateTime
   date_fin        DateTime
   statut_paiement String   @db.VarChar(255)
   destination     String   @db.VarChar(255)
 
-  client Client @relation(fields: [id_clients], references: [id_client])
+  client Client @relation(fields: [id_client], references: [id_client])
 
-  avoir Avoir[]
+  avoirs Avoir[]
 }
 
 model Client {
   id_client             String @id @default(uuid())
-  nomclient             String @db.VarChar(255)
+  nom_client            String @db.VarChar(255)
   email                 String @unique
   telephone             String @unique
   numero_carte_bancaire String @unique
-  codesecurite          String @unique
+  code_securite         String @unique
 
   locations Location[]
 }
