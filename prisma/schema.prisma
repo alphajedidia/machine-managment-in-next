@@ -26,7 +26,7 @@ model Engin {
   matricule   String     @id
   id_type     String
   id_entrepot String
-  etat        String     @db.VarChar(255)
+  etat        Boolean
   type_engin  Type_engin @relation(fields: [id_type], references: [id_type])
   entrepot    Entrepot   @relation(fields: [id_entrepot], references: [id_entrepot])
 
@@ -38,6 +38,7 @@ model Type_engin {
   id_categorie    String
   image_url       String
   nom_engin       String
+  description     String
   prix_journalier Int
   categorie       Categorie @relation(fields: [id_categorie], references: [id_categorie])
   Engin           Engin[]
