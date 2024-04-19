@@ -1,27 +1,59 @@
+// api/engin/create.ts
+
 import { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client';
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
-  try {
-    const prisma = new PrismaClient();
+const prisma = new PrismaClient();
 
-    if (req.method === 'GET') {
-      const typesEngin = await prisma.type_engin.findMany({
-        include: {
-          _count: {
-            select: { Engin: true }
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+  if (req.method === 'POST') {
+    try {
+      const { matricule, id_type, id_entrepot, etat } = req.body;
+
+      const entrepot = await prisma.entrepot.findUnique({
+        where: {
+          id_entrepot: id_entrepot
+        }
+      });
+
+      if (!entrepot || entrepot.capacite === 0) {
+        return res.status(400).json({ error: 'La capacité de l\'entrepôt est insuffisante' });
+      }
+
+      const newEngin = await prisma.engin.create({
+        data: {
+          matricule,
+          id_type,
+          id_entrepot,
+          etat
+        }
+      });
+
+      await prisma.entrepot.update({
+        where: {
+          id_entrepot: id_entrepot
+        },
+        data: {
+          capacite: {
+            decrement: 1
           }
         }
       });
 
-      if (typesEngin.length) {
-        res.status(200).json(typesEngin);
-      } else {
-        res.status(404).end();
-      }
-    } 
-  } catch (error) {
-    console.error("Une erreur s'est produite :", error);
-    res.status(500).end();
+      res.status(201).json(newEngin);
+    } catch (error) {
+      console.error('Error creating engin:', error);
+      res.status(500).json({ error: 'Failed to create engin' });
+    }
+  } else if (req.method === 'GET') {
+    try {
+      const engins = await prisma.engin.findMany();
+      res.status(200).json(engins);
+    } catch (error) {
+      console.error('Error fetching engins:', error);
+      res.status(500).json({ error: 'Failed to fetch engins' });
+    }
+  } else {
+    res.status(405).json({ error: 'Method not allowed' });
   }
 };
