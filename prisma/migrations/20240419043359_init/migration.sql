@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Location" ADD COLUMN     "Total" INTEGER NOT NULL DEFAULT 0;

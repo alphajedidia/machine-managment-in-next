@@ -34,7 +34,7 @@ model Engin {
 }
 
 model Type_engin {
-  id_type         String    @id
+  id_type         String    @id @default(uuid())
   id_categorie    String
   image_url       String
   nom_engin       String
@@ -55,7 +55,6 @@ model Avoir {
   id          Int    @id @default(autoincrement())
   matricule   String
   id_location String
-
   location Location @relation(fields: [id_location], references: [id_location])
   engin    Engin?   @relation(fields: [matricule], references: [matricule])
 }
@@ -67,6 +66,7 @@ model Location {
   date_fin        DateTime
   statut_paiement String   @db.VarChar(255)
   destination     String   @db.VarChar(255)
+  total Int @default(0)
 
   client Client @relation(fields: [id_client], references: [id_client])
 
