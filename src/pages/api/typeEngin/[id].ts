@@ -1,4 +1,3 @@
-// Dans getClientById.js
 
 import { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client';

@@ -20,7 +20,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         }
       });
       
-
       res.status(201).json(newClient);
     } catch (error) {
       console.error('Error creating client:', error);

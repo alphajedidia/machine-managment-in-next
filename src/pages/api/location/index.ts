@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client';
 import calculerPrixTotal from '@/app/utils/locationTotal';
+import SendEmail from '@/app/utils/mailer/mailer.service';
 const prisma = new PrismaClient();
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -57,7 +58,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             where: { id_entrepot: engin.id_entrepot },
             data: { capacite: { decrement: 1 } }
           });
-
+ 
           await prisma.engin.update({
             where: { matricule: engin.matricule },
             data: { etat: false }
@@ -77,7 +78,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       });
 
       const response = {
-        nom_client: client?.nom_client,
+        nom_client: client.nom_client,
         email: client.email,
         engins: engins.map(engin => ({
           nom_engin: engin.nom_engin,
@@ -87,6 +88,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       };
 
       res.status(201).json(response);
+      SendEmail(client.nom_client,client.email,engins,totalprix)
     } catch (error) {
       console.error('Error creating location:', error);
       res.status(500).json({ error: error.message });
