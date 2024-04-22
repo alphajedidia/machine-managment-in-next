@@ -14,6 +14,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           id_type: id.toString(),
         },
       });
+      
 
       if (!typeEngin) {
         return res.status(404).json({ error: 'Type Engin not font' });
