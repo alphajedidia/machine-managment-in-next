@@ -67,9 +67,7 @@ model Location {
   statut_paiement String   @db.VarChar(255)
   destination     String   @db.VarChar(255)
   total Int @default(0)
-
   client Client @relation(fields: [id_client], references: [id_client])
-
   avoirs Avoir[]
 }
 
