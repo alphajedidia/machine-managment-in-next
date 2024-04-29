@@ -1,13 +1,12 @@
-// pages/protected.tsx
+'use client'
 import ProtectedRoute from "@/components/ProtectedRoute";
-
+import { signOut } from "next-auth/react";
 export default function ProtectedPage() {
   return (
     <ProtectedRoute>
-      <div>
         <h1>Page protégée</h1>
         <p>Cette page est accessible uniquement aux utilisateurs authentifiés.</p>
-      </div>
+        <button onClick={()=>signOut()}>sign OUT</button>
     </ProtectedRoute>
   );
 }

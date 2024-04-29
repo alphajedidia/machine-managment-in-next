@@ -9,7 +9,7 @@ interface User {
 const rootUser: User = {
   username: 'root',
   email: 'mihajasoaalain85@gmail.com',
-  password: bcrypt.hashSync('root', 10), // Mot de passe hashé pour 'rootpassword'
+  password: bcrypt.hashSync('root', 10),
 };
 
 export default rootUser;
