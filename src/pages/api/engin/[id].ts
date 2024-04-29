@@ -9,7 +9,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       const { id } = req.query;
       const { etat } = req.body; 
       const updatedEngin = await prisma.engin.update({
-        where: { matricule: id.toString()},
+        where: { matricule: id && id.toString()},
         data: { etat: etat }
       });
 
