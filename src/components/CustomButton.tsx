@@ -1,7 +1,7 @@
 "use client";
 
 import { CustomButtonProps } from '@/types'
-import React from 'react'
+import React from 'react';
 
 
 
