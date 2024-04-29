@@ -8,6 +8,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     if (req.method === 'GET') {
       const categorie = await prisma.categorie.findMany();
+
       if (categorie.length > 0) {
         res.status(200).json(categorie);
       } else {
@@ -28,6 +29,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       await prisma.$disconnect();
 
       console.log("Données créées avec succès.");
+
+
+
       res.status(201).json(newData);
     } else {
       res.status(405).json({ error: 'Méthode non autorisée' });
