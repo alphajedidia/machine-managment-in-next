@@ -8,6 +8,10 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+.clip-path-triangle {
+  clip-path: polygon(0 0, 33.33% 0, 80% 100%, 0% 100%);
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 55, 55, 55;
@@ -18,12 +22,9 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
 @layer utilities {
