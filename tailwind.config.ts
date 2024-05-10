@@ -131,7 +131,6 @@ const config: Config = {
     },
   },
   plugins: [
-    require('tailwind-clip-path'),
   ],
 };
 export default config;
