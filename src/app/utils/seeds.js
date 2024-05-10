@@ -1,78 +1,82 @@
-const { PrismaClient } = require('@prisma/client');
+// seed.js
+const { PrismaClient } = require('@prisma/client')
+const { entrepots, categories, typesEngins, engins, clients, locations, avoirs } = require('./data')
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient()
 
-async function seedDatabase() {
+async function main() {
+  // Insérer les catégories
+  const createdCategories = await Promise.all(
+    categories.map(categorie => prisma.categorie.create({ data: categorie }))
+  )
 
-    
-  const categories = [
-    { nom_categorie: "Engins de chantier", detail: "Pelleteuses, bulldozers, etc." },
-    { nom_categorie: "Engins de manutention", detail: "Chariots élévateurs, transpalettes, etc." },
-    { nom_categorie: "Engins agricoles", detail: "Tracteurs, moissonneuses-batteuses, etc." },
-  ];
+  // Insérer les entrepôts
+  const createdEntrepots = await Promise.all(
+    entrepots.map(entrepot => prisma.entrepot.create({ data: entrepot }))
+  )
 
-  const typeEngins = [
-    {
-      nom_engin: "Pelleteuse",
-      description: "Engin de chantier utilisé pour creuser et déplacer de la terre",
-      prix_journalier: 800,
-      categorie: { connect: { nom_categorie: "Engins de chantier" } },
-    },
-    {
-      nom_engin: "Chariot élévateur",
-      description: "Engin de manutention utilisé pour lever et déplacer des charges lourdes",
-      prix_journalier: 500,
-      categorie: { connect: { nom_categorie: "Engins de manutention" } },
-    },
-    {
-      nom_engin: "Tracteur",
-      description: "Engin agricole utilisé pour labourer la terre et remorquer des machines",
-      prix_journalier: 300,
-      categorie: { connect: { nom_categorie: "Engins agricoles" } },
-    },
-  ];
+  // Insérer les types d'engins
+  const createdTypesEngins = await Promise.all(
+    typesEngins.map(async typeEngin => {
+      const categorie = createdCategories.find(c => c.id_categorie === typeEngin.id_categorie)
+      return prisma.type_engin.create({
+        data: {
+          ...typeEngin,
+          categorie: { connect: { id_categorie: categorie.id_categorie } }
+        }
+      })
+    })
+  )
 
-  const entrepots = [
-    { nom_entrepot: "Entrepôt principal", localisation: "Paris", capacite: 100 },
-    { nom_entrepot: "Entrepôt secondaire", localisation: "Lyon", capacite: 50 },
-  ];
+  // Insérer les engins
+  const createdEngins = await Promise.all(
+    engins.map(async engin => {
+      const typeEngin = createdTypesEngins.find(te => te.id_type === engin.id_type)
+      const entrepot = createdEntrepots.find(e => e.id_entrepot === engin.id_entrepot)
+      return prisma.engin.create({
+        data: {
+          ...engin,
+          type_engin: { connect: { id_type: typeEngin.id_type } },
+          entrepot: { connect: { id_entrepot: entrepot.id_entrepot } }
+        }
+      })
+    })
+  )
 
-  const engins = [
-    {
-      matricule: "ENG001",
-      etat: true,
-      type_engin: { connect: { nom_engin: "Pelleteuse" } },
-      entrepot: { connect: { nom_entrepot: "Entrepôt principal" } },
-    },
-    {
-      matricule: "ENG002",
-      etat: false,
-      type_engin: { connect: { nom_engin: "Chariot élévateur" } },
-      entrepot: { connect: { nom_entrepot: "Entrepôt principal" } },
-    },
-    {
-      matricule: "ENG003",
-      etat: true,
-      type_engin: { connect: { nom_engin: "Tracteur" } },
-      entrepot: { connect: { nom_entrepot: "Entrepôt secondaire" } },
-    },
-  ];
+  // Insérer les clients
+  const createdClients = await Promise.all(
+    clients.map(client => prisma.client.create({ data: client }))
+  )
 
-  await prisma.categorie.createMany({ data: categories });
+  // Insérer les locations
+  const createdLocations = await Promise.all(
+    locations.map(async location => {
+      const client = createdClients.find(c => c.id_client === location.id_client)
+      return prisma.location.create({
+        data: {
+          ...location,
+          client: { connect: { id_client: client.id_client } }
+        }
+      })
+    })
+  )
 
-  await prisma.type_engin.createMany({ data: typeEngins });
-
-  await prisma.entrepot.createMany({ data: entrepots });
-
-  await prisma.engin.createMany({ data: engins });
-
-  console.log("Database seeded successfully!");
+  // Insérer les avoirs
+  const createdAvoirs = await Promise.all(
+    avoirs.map(async avoir => {
+      const engin = createdEngins.find(e => e.matricule === avoir.matricule)
+      const location = createdLocations.find(l => l.id_location === avoir.id_location)
+      return prisma.avoir.create({
+        data: {
+          ...avoir,
+          engin: { connect: { matricule: engin.matricule } },
+          location: { connect: { id_location: location.id_location } }
+        }
+      })
+    })
+  )
 }
 
-seedDatabase()
-  .catch((error) => {
-    console.error("Error seeding database:", error);
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+main()
+  .catch(e => console.error(e))
+  .finally(async () => await prisma.$disconnect())

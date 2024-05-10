@@ -9,6 +9,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         try {
             const entrepotsData = req.body as FormData;
 
+            const entrepotsData = req.body;
+
             if (!Array.isArray(entrepotsData)) {
                 return res.status(400).json({ error: 'Le corps de la requête doit contenir un tableau d\'objets JSON' });
             }

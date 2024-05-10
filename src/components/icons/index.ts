@@ -3,6 +3,7 @@ import PhoneIcon from "./PhoneIcon";
 import Cart from "./Cart";
 import Arrow from "./Arrow";
 import DeleteIcon from "./DeleteIcon";
+import Delete from "./Delete";
 
 export {
     SearchIcon,
@@ -10,4 +11,5 @@ export {
     Cart,
     Arrow,
     DeleteIcon,
+    Delete,
 }

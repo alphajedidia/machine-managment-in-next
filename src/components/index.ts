@@ -4,6 +4,7 @@ import CustomButton from "./CustomButton";
 import Footer from "./Footer";
 import Logo from "./navbar/Logo";
 import LinkNav from "./navbar/LinkNav";
+import Product from "./Engin/Product";
 // import Model from "./modelVR/Model";
 
 export{
@@ -13,5 +14,6 @@ export{
     Footer,
     Logo,
     LinkNav,
+    Product,
     // Model,
 }
