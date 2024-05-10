@@ -68,7 +68,6 @@ function initdb(){
     
       console.log("Database seeded successfully!");
     }
-    
     seedDatabase()
       .catch((error) => {
         console.error("Error seeding database:", error);
@@ -76,6 +75,5 @@ function initdb(){
       .finally(async () => {
         await prisma.$disconnect();
       });
-    
 }
 export default initdb;
