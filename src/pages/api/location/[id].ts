@@ -10,7 +10,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       const { id } = req.query;
       const status = req.body;
       const locationStatus= await prisma.location.update({
-            where: { id_location: id.toString },
+            where: { id_location: id},
             data: { statut_paiement: status }
           });
 
