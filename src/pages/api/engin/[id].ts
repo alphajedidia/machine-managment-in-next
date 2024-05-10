@@ -12,7 +12,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         where: { matricule: id && id.toString()},
         data: { etat: etat }
       });
-
       if (!updatedEngin) {
         return res.status(404).json({ error: 'Engin not found' });
       }
