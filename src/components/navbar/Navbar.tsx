@@ -11,7 +11,7 @@ function Navbar() {
   },
   {
     link : "/test",
-    title : "à propos de Nous"
+    title : "A propos de Nous"
   },
   {
     link : "/test",
