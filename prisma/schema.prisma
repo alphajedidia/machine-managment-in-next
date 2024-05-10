@@ -41,11 +41,11 @@ model Type_engin {
   description     String
   prix_journalier Int
   categorie       Categorie @relation(fields: [id_categorie], references: [id_categorie])
-  Engin           Engin[]
+  engins          Engin[]
 }
 
 model Categorie {
-  id_categorie  String       @id
+  id_categorie  String       @id @default(uuid())
   nom_categorie String       @db.VarChar(255)
   detail        String
   type_engins   Type_engin[]

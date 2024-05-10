@@ -33,7 +33,7 @@ const BarChart = ({ data }) => {
       },
       yaxis: {
         title: {
-          text: 'Revenus ($)',
+          text: 'Revenus (AR)',
         },
       },
       fill: {
@@ -41,8 +41,8 @@ const BarChart = ({ data }) => {
       },
       tooltip: {
         y: {
-          formatter: function (val) {
-            return '$' + val.toLocaleString();
+          formatter: function (val:String) {
+            return 'Ar ' + val.toLocaleString();
           },
         },
       },
@@ -60,5 +60,4 @@ const BarChart = ({ data }) => {
     </div>
   );
 };
-
 export default BarChart;

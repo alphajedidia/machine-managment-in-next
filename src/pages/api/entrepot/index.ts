@@ -8,7 +8,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'POST') {
         try {
             const entrepotsData = req.body;
-
             if (!Array.isArray(entrepotsData)) {
                 return res.status(400).json({ error: 'Le corps de la requête doit contenir un tableau d\'objets JSON' });
             }

@@ -9,10 +9,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'GET') {
     try {
       const { id } = req.query;
-        console.log(id)
       const client = await prisma.client.findUnique({
         where: {
-          id_client: id.toString(),
+          id_client: id&&id.toString(),
         },
       });
 

@@ -11,7 +11,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         console.log(id)
       const typeEngin = await prisma.type_engin.findUnique({
         where: {
-          id_type: id.toString(),
+          id_type: id && id.toString(),
         },
       });
       
