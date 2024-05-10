@@ -16,10 +16,8 @@
     "next-auth": "^4.24.7",
     "nodemailer": "^6.9.13",
     "react": "^18",
-
     "react-modal": "^3.16.1",
     "sweetalert2": "^11.10.8",
-
     "react-apexcharts": "^1.4.1",
     "react-dom": "^18"
 
