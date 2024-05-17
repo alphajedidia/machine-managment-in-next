@@ -10,7 +10,7 @@ const LayoutAdmin = ({ children }: { children: React.ReactNode }) => {
       <ProtectedRoute>
         <NavBarAdmin NavTitle={"GESTION DE LOCATION D'ENGIN"} />
         <SideBar />
-        <div className="pt-20 pl-72">
+        <div className="pt-20 pl-72 relative w-full h-screen border">
         {children}
         </div>
       </ProtectedRoute>
