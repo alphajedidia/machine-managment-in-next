@@ -44,13 +44,7 @@ const Dashboard = () => {
     },
   ];
   return (
-    <div className="flex">
-      <div className="w-[700px]">
-        <h2>Tableau de bord</h2>
-        <BarChart data={revenueData} />
-      </div>
-      <CardInfo titre={"Top Engin"} detail={mockData} />
-    </div>
+    <BarChart data={revenueData} />
   );
 };
 
