@@ -28,9 +28,10 @@ export default function ClientTable() {
         console.error('There was a problem with the fetch operation:', error);
       });
   }, []);
-
+  console.log(clients)
+if (clients.length!=0)
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-16 mx-auto max-w-6xl bg-primary-500">
+<div className="relative overflow-x-auto  shadow-md sm:rounded-lg mt-16 mx-auto max-w-6xl bg-primary-500">
       <h1 className="text-2xl font-bold mb-4 ml-4">Liste des Clients</h1>
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
@@ -62,6 +63,9 @@ export default function ClientTable() {
           ))}
         </tbody>
       </table>
-    </div>
-  );
+    </div>);
+else 
+  return (<div className="h-full w-full">
+        <h1 className="text-3xl text-center">IL n'y a aucune Client</h1>
+  </div>)
 }
