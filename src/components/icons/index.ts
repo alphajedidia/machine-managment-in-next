@@ -4,6 +4,7 @@ import Cart from "./Cart";
 import Arrow from "./Arrow";
 import DeleteIcon from "./DeleteIcon";
 import Delete from "./Delete";
+import UpdateIcon from "./UpdateIcon";
 
 export {
     SearchIcon,
@@ -12,4 +13,5 @@ export {
     Arrow,
     DeleteIcon,
     Delete,
+    UpdateIcon
 }

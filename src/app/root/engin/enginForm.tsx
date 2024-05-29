@@ -1,6 +1,6 @@
 
 'use client'
-import {showSuccessAddEngin,showErrorAddEntrepot } from "@/utils/sweetAlertUtils";
+import {showSuccess,showErrorAddEntrepot } from "@/utils/sweetAlertUtils";
 import React, { useState, useEffect } from "react";
 
 interface Entrepot {
@@ -78,7 +78,7 @@ export default function EnginForm() {
       if (!response.ok) {
         showErrorAddEntrepot();
       }
-      showSuccessAddEngin();
+      showSuccess("Ajouté","L'entrepôt a été ajouté avec succès !");
 
       setMatricule("");
       setSelectedType("");
@@ -92,7 +92,7 @@ export default function EnginForm() {
   };
 
   return (
-    <form className="max-w-md mx-auto mt-16 border border-gray-300 p-6 rounded-lg" onSubmit={handleSubmit}>
+    <form className="max-w-md mx-auto mt-16 border border-primary-300 p-6 rounded-lg bg-white" onSubmit={handleSubmit}>
       <h1 className="text-2xl font-extrabold">Ajouter un engin</h1> <br />
       <div className="relative z-0 w-full mb-5 group">
         <input
@@ -155,13 +155,13 @@ export default function EnginForm() {
         </label>
         <select
           id="countries"
-          value={isGoodCondition ? "Très Bonne Etat" : "Mauvaise Etat"}
+          value={isGoodCondition ? "Disponible" : "Indisponible"}
           required
-          onChange={(e) => setIsGoodCondition(e.target.value === "Très Bonne Etat")}
+          onChange={(e) => setIsGoodCondition(e.target.value === "Disponible")}
           className="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500"
         >
-          <option value="Très Bonne Etat">Très Bonne Etat</option>
-          <option value="Mauvaise Etat">Mauvaise Etat</option>
+          <option value="Disponible">Disponible</option>
+          <option value="Indisponible">Indisponible</option>
         </select>
       </div>
 

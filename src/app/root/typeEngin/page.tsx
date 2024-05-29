@@ -30,7 +30,6 @@ export default function TypeEngin() {
       if (!response.ok) {
         throw new Error("Network 1 response was not ok");
       }
-      // Réinitialiser le formulaire après l'ajout réussi
       setFormData({
         id_type: "",
         id_categorie: "",
@@ -40,10 +39,8 @@ export default function TypeEngin() {
         prix_journalier: ""
       });
       console.log("Type d'engin ajouté avec succès !");
-      // Ajoutez ici une logique pour indiquer à l'utilisateur que l'ajout a été effectué avec succès
     } catch (error) {
       console.error("There was a problem with the add operation:", error);
-      // Ajoutez ici une logique pour indiquer à l'utilisateur qu'il y a eu une erreur lors de l'ajout
     }
   };
 
