@@ -12,6 +12,7 @@ import Map from "./Map";
 import Truck from "./Truck";
 import Status from "./Status";
 import Download from "./Download";
+import Email from "./Email";
 export {
   SearchIcon,
   PhoneIcon,
@@ -26,5 +27,6 @@ export {
   Map,
   Truck,
   Status,
-  Download
+  Download,
+  Email
 };
