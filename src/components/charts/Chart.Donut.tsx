@@ -34,7 +34,7 @@ const options: ApexOptions = {
       breakpoint: 2600,
       options: {
         chart: {
-          width: 250,
+          width: 240,
         },
       },
     },
@@ -42,7 +42,7 @@ const options: ApexOptions = {
       breakpoint: 640,
       options: {
         chart: {
-          width: 100,
+          width: 250,
         },
       },
     },
@@ -63,7 +63,7 @@ const ChartDonut: React.FC = () => {
   handleReset;
 
   return (
-      <div className=" ">
+      <div className="w-full h-full border">
         <div id="ChartDonut" className="mx-auto flex justify-center">
           <ReactApexChart
             options={options}
