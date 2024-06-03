@@ -1,10 +1,13 @@
+import { client } from "@/app/utils/data";
+import ListClient from "@/components/client/ListClient";
+import TableClient from "@/components/client/TableClient";
 import React from "react";
-import ClientTable from "./clientTable";
+client;
 
-export default function EntrepotPage() {
-  return (
-    <div >       
-         <ClientTable />
-    </div>
-  );
-}
+const ClientTable = () => {
+  return <div>
+    <TableClient Title="LISTE DES CLIENTS" />
+  </div>;
+};
+
+export default ClientTable;
