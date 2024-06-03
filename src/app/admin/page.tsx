@@ -1,52 +1,52 @@
 "use client";
-import CardInfo from "@/components/cardInfo/CardInfo";
-import Dashboard from "../teste/page";
 import { Engin } from "@prisma/client";
 import ChartDonut from "@/components/charts/Chart.Donut";
+import { TopEngin, locationData, series } from "../utils/data";
+
+import Location from "@/components/location/Location";
+import BarChart from "@/components/charts/BarChart";
+import CardTop from "@/components/card.top/CardTop";
+import Carousel from "@/components/carrousel/Carousel";
 
 export default function ProtectedPage() {
-  const mockData: Engin[] = [
+  const slides = [
     {
-      matricule: "ENG001",
-      id_type: "TYPE001",
-      id_entrepot: "ENT001",
-      etat: true,
+      StatChart: <ChartDonut />,
+      StatChartTitle: "Chart Title 1",
     },
     {
-      matricule: "ENG002",
-      id_type: "TYPE002",
-      id_entrepot: "ENT002",
-      etat: false,
+      StatChart: <ChartDonut />,
+      StatChartTitle: "Chart Title 2",
     },
     {
-      matricule: "ENG002",
-      id_type: "TYPE002",
-      id_entrepot: "ENT002",
-      etat: false,
+      StatChart: <ChartDonut />,
+      StatChartTitle: "Chart Title 3",
     },
   ];
+
   return (
-    <div className="flex justify-center items-center w-full h-full">
-      <div className=" relative flex flex-col justify-around items-center h-full w-3/5">
-        <div className="h-3/6 w-9/12 border">
-          <h1 className="text-center text-xl font-bold">LOCATION PAR MOIS</h1>
-          <Dashboard />
+    <div className="relative flex justify-center items-center w-full h-5/6 mt-5 p-5 overflow-hidden">
+      <div className="relative flex flex-col justify-around items-center h-full w-3/5">
+        <div className="h-auto w-9/12 border">
+          <h1 className="text-center text-xl ">LOCATION PAR MOIS</h1>
+          <BarChart series={series} />
         </div>
-        <div className=" relative h-2/5 w-1/2">
-          <div className="h-5/6 py-4 px-2 w-full border">
-            <ChartDonut />
-          </div>
-          <div className="bg-primary-500 text-2xl text-center">
-            <p>TRACTEUR</p>
-          </div>
+        <div className="relative h-2/5 w-1/2 shadow-lg">
+          <h1 className="text-center text-xl px-1 py-2">ENGIN DISPO</h1>
+
+          <Carousel slides={slides} />
         </div>
       </div>
-      <div className=" relative flex flex-col justify-around items-center h-full w-2/5 bg-primary-200">
-        <div className=" h-1/3 w-3/5 ">
-          <CardInfo titre={"Top Engin"} detail={mockData} />
+      <div className="relative flex flex-col justify-around items-center h-full w-6/12">
+        <div className="h-auto w-3/5 border shadow-lg">
+          <h1 className="text-center text-xl px-1 py-2">TOP ENGINS LOUER</h1>
+          <CardTop TopEngin={TopEngin} />
         </div>
-        <div className="h-3/5 w-3/4 bg-amber-200">
-          <h1 className="text-center text-2xl">LOCATION EN COURSS</h1>
+        <div className=" w-3/4 border shadow-lg">
+          <h1 className="text-center text-xl px-1 py-2">LOCATION EN COURS</h1>
+          <div className="relative max-h-[300px] overscroll-x-none overflow-y-auto">
+            <Location location={locationData} showAll={false} />
+          </div>
         </div>
       </div>
     </div>
