@@ -5,9 +5,10 @@ import React from "react";
 client;
 
 const ClientTable = () => {
-  return <div>
+  return (
+  <div>
     <TableClient Title="LISTE DES CLIENTS" />
-  </div>;
+  </div>)
 };
 
 export default ClientTable;
