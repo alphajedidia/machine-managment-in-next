@@ -10,17 +10,21 @@ import Calendar from "./Calendar";
 import ChartIcon from "./ChartIcon";
 import Map from "./Map";
 import Truck from "./Truck";
+import Status from "./Status";
+import Download from "./Download";
 export {
-    SearchIcon,
-    PhoneIcon,
-    Cart,
-    Arrow,
-    DeleteIcon,
-    Delete,
-    Client,
-    Location,
-    Calendar,
-    ChartIcon,
-    Map,
-    Truck
-}
+  SearchIcon,
+  PhoneIcon,
+  Cart,
+  Arrow,
+  DeleteIcon,
+  Delete,
+  Client,
+  Location,
+  Calendar,
+  ChartIcon,
+  Map,
+  Truck,
+  Status,
+  Download
+};
