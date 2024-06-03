@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Email, PhoneIcon } from "../icons";
 interface ListClientProps {
   nom_client: string;
   email: string;
@@ -7,7 +7,13 @@ interface ListClientProps {
   numero_carte_bancaire: string;
 }
 
-const ListClient = ({ ListClient }: { ListClient: ListClientProps[] }) => {
+const ListClient = ({
+  ListClient,
+  searchTerm,
+}: {
+  ListClient: ListClientProps[];
+  searchTerm: string;
+}) => {
   return (
     <div>
       <table className="min-w-full h-full divide-y divide-gray-200">
@@ -31,27 +37,30 @@ const ListClient = ({ ListClient }: { ListClient: ListClientProps[] }) => {
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-200">
-          {ListClient.map((Client, index) => {
-            return (
-              <tr key={index} className="hover:bg-secondary-100 ">
-                <td className="px-6 py-4 text-sm font-medium text-gray-900">
-                  {Client.nom_client}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {Client.email}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {Client.telephone}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {Client.numero_carte_bancaire}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  action
-                </td>
-              </tr>
-            );
-          })}
+          {ListClient.filter((ClientItems) =>
+            ClientItems.nom_client
+              .toLowerCase()
+              .includes(searchTerm.toLowerCase())
+          ).map((Client, index) => (
+            <tr key={index} className="hover:bg-secondary-100 ">
+              <td className="px-6 py-4 text-sm font-medium text-gray-900">
+                {Client.nom_client}
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                {Client.email}
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                {Client.telephone}
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                {Client.numero_carte_bancaire}
+              </td>
+              <td className="flex text-center justify-around px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <Email iconStyle="w-4 h-4 " />
+                <PhoneIcon iconStyle="w-4 h-4" />
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
