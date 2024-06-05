@@ -21,7 +21,7 @@ const options: ApexOptions = {
   plotOptions: {
     pie: {
       donut: {
-        size: "65%",
+        size: "50%",
         background: "transparent",
       },
     },
@@ -34,7 +34,7 @@ const options: ApexOptions = {
       breakpoint: 2600,
       options: {
         chart: {
-          width: 380,
+          width: 240,
         },
       },
     },
@@ -42,7 +42,7 @@ const options: ApexOptions = {
       breakpoint: 640,
       options: {
         chart: {
-          width: 200,
+          width: 250,
         },
       },
     },
@@ -63,8 +63,8 @@ const ChartDonut: React.FC = () => {
   handleReset;
 
   return (
-      <div className="mb-2">
-        <div id="chartThree" className="mx-auto flex justify-center">
+      <div className="w-full h-full border">
+        <div id="ChartDonut" className="mx-auto flex justify-center">
           <ReactApexChart
             options={options}
             series={state.series}

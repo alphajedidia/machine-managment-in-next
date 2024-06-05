@@ -11,17 +11,17 @@ export const ConfirmationDialogue = (title: string, text: string): Promise<Sweet
     confirmButtonColor: '#d33',
     cancelButtonText: 'Annuler',
     confirmButtonText: 'Oui, supprimer !',
+<<<<<<< HEAD
     background:'#fefefe'
 
  
     
    
+=======
+    background:'#fdfdfd'
+>>>>>>> 52feb4767bed2ba20aaa446f7ab351423300cf35
   });
 };
-
-
-
-
 
 export const showErrorAddEntrepot = () => {
   return Swal.fire({
