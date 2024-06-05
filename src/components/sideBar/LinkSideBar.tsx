@@ -5,9 +5,8 @@ type LinkType = {
   title: string;
   icon: React.ReactNode;
   route: string;
-  onClick?: () => void;
 };
-const LinkSideBar = ({ link, title, icon, route ,onClick}: LinkType) => {
+const LinkSideBar = ({ link, title, icon, route}: LinkType) => {
   const pathActive = usePathname();
   const colorClass =
     pathActive === route
@@ -17,7 +16,6 @@ const LinkSideBar = ({ link, title, icon, route ,onClick}: LinkType) => {
     <Link href={`${link}`}>
       <li
         className={`flex items-center text-xl mt-2 px-2 py-3 rounded-full group ${colorClass}`}
-        onClick={onClick}
       >
         {icon}
         <span className="ms-3">{title}</span>

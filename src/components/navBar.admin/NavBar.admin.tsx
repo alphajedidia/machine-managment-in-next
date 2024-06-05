@@ -1,7 +1,8 @@
 import React from "react";
 import Logo from "../navbar/Logo";
 import Notif from "../icons/Notif";
-const NavBarAdmin = ({NavTitle}:{NavTitle:String}) => {
+import { Logout } from "../icons";
+const NavBarAdmin = ({ NavTitle }: { NavTitle: String }) => {
   return (
     <nav className=" text-xl h-20 fixed top-0 z-50 w-full bg-secondary-400 border-gray-200">
       <div className="px-3 py-3 lg:px-5 lg:pl-3">
@@ -18,7 +19,7 @@ const NavBarAdmin = ({NavTitle}:{NavTitle:String}) => {
 
           <div className="flex items-center ">
             <div className="flex  items-center ms-3">
-              <div className="flex items-center w-48 justify-between ">
+              <div className="flex items-center w-80 justify-between ">
                 <Notif iconStyle="w-10 h-10  text-primary-400 hover:cursor-pointer" />
                 <button
                   type="button"
@@ -27,10 +28,14 @@ const NavBarAdmin = ({NavTitle}:{NavTitle:String}) => {
                   data-dropdown-toggle="dropdown-user"
                 >
                   <img
-                    className="w-16 h-16 rounded-full"
-                    src="public/G.jpeg"
+                    className="w-14 h-14 rounded-full"
+                    src="/G.jpeg"
                     alt="user photo"
                   />
+                </button>
+                <button className=" flex border p-2 rounded-full border-secondary-100 text-secondary-100 hover:text-error-500 hover:border-error-500">
+                  <Logout iconStyle="w-10 h-10 pr-1" />
+                  <span>Déconnexion</span>{" "}
                 </button>
               </div>
             </div>

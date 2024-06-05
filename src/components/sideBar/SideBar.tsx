@@ -34,13 +34,7 @@ const SideNavItem = [
     link: "/admin/calendrier",
     title: "Calendrier",
     icon: <Calendar iconStyle="h-8 w-8" />,
-  },
-  {
-    link: "/auth",
-    title: "Déconnection",
-    icon: <Logout iconStyle="h-8 w-8" />,
-    onClick: () => signOut(),
-  },
+  }
 ];
 
 const Sidebar = () => {
@@ -60,7 +54,6 @@ const Sidebar = () => {
                 title={item.title}
                 icon={item.icon}
                 route={item.link}
-                onClick={item.onClick}
               />
             ))}
         </ul>
