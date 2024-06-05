@@ -13,6 +13,13 @@ import Truck from "./Truck";
 import Status from "./Status";
 import Download from "./Download";
 import Email from "./Email";
+import Add from "./Add";
+import Eyes from "./Eyes";
+import Trash from "./Trash";
+import Pen from "./Pen";
+import Logout from "./Logout";
+import Back from "./Back";
+
 export {
   SearchIcon,
   PhoneIcon,
@@ -28,5 +35,11 @@ export {
   Truck,
   Status,
   Download,
-  Email
+  Email,
+  Add,
+  Eyes,
+  Trash,
+  Pen,
+  Logout,
+  Back
 };
