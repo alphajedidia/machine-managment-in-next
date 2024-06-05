@@ -279,8 +279,110 @@ const client=[
     "numero_carte_bancaire": "5555-6666-7777-8888"
   }
 ]
+const EnginCardData=[
+  {
+    "title": "Excavatrice",
+    "description": "Moteur diesel 6 cylindres",
+    "prixJournalier": 150
+  },
+  {
+    "title": "Bulldozer",
+    "description": "Moteur diesel 8 cylindres",
+    "prixJournalier": 200
+  },
+  {
+    "title": "Grue",
+    "description": "Moteur électrique",
+    "prixJournalier": 300
+  },
+  {
+    "title": "Chargeuse",
+    "description": "Moteur diesel 4 cylindres",
+    "prixJournalier": 120
+  },
+  {
+    "title": "Niveleuse",
+    "description": "Moteur diesel 6 cylindres",
+    "prixJournalier": 180
+  },
+  {
+    "title": "Rétrocaveuse",
+    "description": "Moteur diesel 4 cylindres",
+    "prixJournalier": 140
+  },
+  {
+    "title": "Compacteur",
+    "description": "Moteur diesel 6 cylindres",
+    "prixJournalier": 160
+  },
+  {
+    "title": "Pelle hydraulique",
+    "description": "Moteur diesel 8 cylindres",
+    "prixJournalier": 220
+  },
+  {
+    "title": "Tracteur",
+    "description": "Moteur diesel 4 cylindres",
+    "prixJournalier": 130
+  },
+  {
+    "title": "Chariot élévateur",
+    "description": "Moteur électrique",
+    "prixJournalier": 100
+  },
+  {
+    "title": "Tombereau",
+    "description": "Moteur diesel 6 cylindres",
+    "prixJournalier": 170
+  },
+  {
+    "title": "Bétonnière",
+    "description": "Moteur électrique",
+    "prixJournalier": 110
+  },
+  {
+    "title": "Foreuse",
+    "description": "Moteur diesel 6 cylindres",
+    "prixJournalier": 250
+  },
+  {
+    "title": "Pelle à pneus",
+    "description": "Moteur diesel 4 cylindres",
+    "prixJournalier": 140
+  },
+  {
+    "title": "Scraper",
+    "description": "Moteur diesel 8 cylindres",
+    "prixJournalier": 210
+  },
+  {
+    "title": "Trancheuse",
+    "description": "Moteur diesel 6 cylindres",
+    "prixJournalier": 190
+  },
+  {
+    "title": "Asphalteuse",
+    "description": "Moteur diesel 6 cylindres",
+    "prixJournalier": 230
+  },
+  {
+    "title": "Centrale à béton",
+    "description": "Moteur électrique",
+    "prixJournalier": 260
+  },
+  {
+    "title": "Concasseur",
+    "description": "Moteur diesel 8 cylindres",
+    "prixJournalier": 280
+  },
+  {
+    "title": "Pelle mécanique",
+    "description": "Moteur diesel 4 cylindres",
+    "prixJournalier": 150
+  }
+]
 
 
 
 
-export { entrepots, categories, typesEngins, engins, locationData, series, TopEngin,client,locationInfo };
+export { entrepots, categories, typesEngins, engins, locationData, series, TopEngin,client,locationInfo ,EnginCardData};
