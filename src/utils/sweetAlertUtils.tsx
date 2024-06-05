@@ -10,7 +10,9 @@ export const ConfirmationDialogue = (title: string, text: string): Promise<Sweet
     cancelButtonColor: '#fec60d',
     confirmButtonColor: '#d33',
     cancelButtonText: 'Annuler',
-    confirmButtonText: 'Oui, supprimer !'
+    confirmButtonText: 'Oui, supprimer !',
+    background:'#fefefe'
+
  
     
    

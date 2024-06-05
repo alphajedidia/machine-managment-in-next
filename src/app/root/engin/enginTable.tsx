@@ -73,7 +73,7 @@ export default function EnginTable() {
       fetchEngins();
       fetchEntrepots();
       fetchTypesEngins();
-    }, 1000);
+    }, 5000);
 
     return () => clearInterval(intervalId);
   }, []);
