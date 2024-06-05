@@ -1,8 +1,10 @@
 'use client'
-import { ConfirmationDialogue, showSuccessDeleteEntrepot } from "@/utils/sweetAlertUtils";
-import React, { useEffect, useState } from "react";
-import MainComponent from "./mainComponent";
+import { ConfirmationDialogue, showSuccess } from "@/utils/sweetAlertUtils";
 
+import React, { useEffect, useState } from "react";
+
+import EnginModal from "./enginModal";
+import { DeleteIcon, UpdateIcon } from "@/components/icons";
 
 interface Engin {
   matricule: string;
@@ -25,6 +27,8 @@ export default function EnginTable() {
   const [engins, setEngin] = useState<Engin[]>([]);
   const [entrepots, setEntrepots] = useState<Entrepot[]>([]);
   const [typeEngins, setTypesEngins] = useState<TypeEngin[]>([]);
+  const [selectedEngin, setSelectedEngin] = useState<Engin | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchEngins = async () => {
@@ -51,7 +55,7 @@ export default function EnginTable() {
         console.error('problème de fetch operation:', error);
       }
     };
-  
+
     const fetchTypesEngins = async () => {
       try {
         const response = await fetch("/api/typeEngin");
@@ -69,7 +73,7 @@ export default function EnginTable() {
       fetchEngins();
       fetchEntrepots();
       fetchTypesEngins();
-    }, 1000);
+    }, 5000);
 
     return () => clearInterval(intervalId);
   }, []);
@@ -96,15 +100,23 @@ export default function EnginTable() {
         if (!response.ok) {
           throw new Error('Failed to delete engin');
         }
-        
-        showSuccessDeleteEntrepot();
+
+        showSuccess('Supprimé', "Engin a été supprimé avec succés !");
       })
       .catch((error) => {
         console.error('Erreur lors de la suppression de l\'engin :', error);
-       
+
       });
   };
+  const handleOpenModal = (engin: Engin | null) => {
+    setSelectedEngin(engin);
+    setIsModalOpen(true);
+  };
 
+  const handleCloseModal = () => {
+    setSelectedEngin(null);
+    setIsModalOpen(false);
+  };
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-16 mx-auto max-w-6xl bg-primary-500">
       <h1 className="text-2xl font-bold mb-4 ml-4">Liste des Entrepots</h1>
@@ -126,6 +138,7 @@ export default function EnginTable() {
             <th scope="col" className="px-6 py-3">
               Action
             </th>
+
           </tr>
         </thead>
         <tbody>
@@ -134,16 +147,30 @@ export default function EnginTable() {
               <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{engin.matricule}</td>
               <td className="px-6 py-4">{getNomEngin(engin.id_type)}</td>
               <td className="px-6 py-4">{getNomEntrepot(engin.id_entrepot)}</td>
-              <td className="px-6 py-4">{engin.etat ? "Bonne état " : "Mauvaise état"}</td>
+              <td className="px-6 py-4">{engin.etat ? "disponible " : "Indisponible"}</td>
               <td className="px-6 py-4">
-                <button onClick={() => handleDeleteEngin(engin.matricule)}>Supprimer</button>
-             <MainComponent></MainComponent>
+              <button onClick={() => handleOpenModal(engin)}
+                  className="text-white bg-primary-500 hover:bg-primary-300 focus:ring-4 focus:primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-[1mm]"> <UpdateIcon></UpdateIcon></button>
+                <EnginModal
+                  isOpen={isModalOpen}
+                  onClose={handleCloseModal}
+                  engin={selectedEngin}
+                  entrepots={entrepots}
+                  typeEngins={typeEngins}
+                />
+                <button onClick={() => handleDeleteEngin(engin.matricule)}
+                  className="text-white bg-error-500 hover:bg-error-300 focus:ring-4 focus:primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-[1mm]">
+                  <DeleteIcon></DeleteIcon>
+                </button>               
               </td>
+
             </tr>
           ))}
+
+
         </tbody>
       </table>
-      
+
     </div>
   );
 }

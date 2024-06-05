@@ -1,7 +1,8 @@
 
 'use client'
-import {showSuccessAddEngin,showErrorAddEntrepot } from "@/utils/sweetAlertUtils";
+import { showSuccess, showErrorAddEntrepot } from "@/utils/sweetAlertUtils";
 import React, { useState, useEffect } from "react";
+import { io, Socket } from 'socket.io-client';
 
 interface Entrepot {
   id_entrepot: string;
@@ -13,7 +14,16 @@ interface TypeEngin {
   nom_engin: string;
 }
 
-export default function EnginForm() {
+interface Engin {
+  matricule: string;
+  id_type: string;
+  id_entrepot: string;
+  etat: boolean;
+}
+
+const socket: Socket = io();
+
+const EnginForm: React.FC = () => {
   const [entrepots, setEntrepots] = useState<Entrepot[]>([]);
   const [typesEngin, setTypesEngin] = useState<TypeEngin[]>([]);
   const [matricule, setMatricule] = useState("");
@@ -50,18 +60,21 @@ export default function EnginForm() {
 
     fetchEntrepots();
     fetchTypesEngin();
+
+    socket.on('newEngin', (newEngin: Engin) => {
+      console.log(`Un nouvel engin a été ajouté: ${newEngin.matricule}`);
+      showSuccess("Nouveau Engin", `Un nouvel engin a été ajouté: ${newEngin.matricule}`);
+    });
+
+    return () => {
+      socket.off('newEngin');
+    };
   }, []);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     
     try {
-      console.log("Données JSON à envoyer :", {
-        matricule,
-        id_type: selectedType,
-        id_entrepot: selectedEntrepot,
-        etat: isGoodCondition,
-      });
       const response = await fetch("/api/engin", {
         method: "POST",
         headers: {
@@ -77,9 +90,12 @@ export default function EnginForm() {
 
       if (!response.ok) {
         showErrorAddEntrepot();
+        return;
       }
-      showSuccessAddEngin();
 
+      showSuccess("Ajouté", "L'engin a été ajouté avec succès !");
+      
+      // Réinitialiser les champs du formulaire
       setMatricule("");
       setSelectedType("");
       setSelectedEntrepot("");
@@ -92,37 +108,39 @@ export default function EnginForm() {
   };
 
   return (
-    <form className="max-w-md mx-auto mt-16 border border-gray-300 p-6 rounded-lg" onSubmit={handleSubmit}>
-      <h1 className="text-2xl font-extrabold">Ajouter un engin</h1> <br />
+    <form className="max-w-md mx-auto mt-16 border border-primary-300 p-6 rounded-lg bg-white" onSubmit={handleSubmit}>
+      <h1 className="text-2xl font-extrabold">Ajouter un engin</h1>
+      <br />
+      
       <div className="relative z-0 w-full mb-5 group">
         <input
           type="text"
           value={matricule}
           onChange={(e) => setMatricule(e.target.value)}
-          className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
           placeholder=" "
           required
         />
         <label
-          htmlFor="floating_email"
-          className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          htmlFor="matricule"
+          className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600"
         >
           Numéro Matricule
         </label>
       </div>
 
       <div className="relative z-0 w-full mb-5 group">
-        <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-400">
+        <label htmlFor="type-engin" className="block mb-2 text-sm font-medium text-gray-400">
           Type d'engin
         </label>
         <select
-          id="countries"
+          id="type-engin"
           value={selectedType}
           required
           onChange={(e) => setSelectedType(e.target.value)}
-          className="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         >
-          <option value="">selectionner le type d'engin</option>
+          <option value="">Sélectionner le type d'engin</option>
           {typesEngin.map((type) => (
             <option key={type.id_type} value={type.id_type}>
               {type.nom_engin}
@@ -133,14 +151,16 @@ export default function EnginForm() {
 
       <div className="relative z-0 w-full mb-5 group">
         <label htmlFor="entrepot" className="block mb-2 text-sm font-medium text-gray-400">
-          Entrepot
+          Entrepôt
         </label>
         <select
           id="entrepot"
           value={selectedEntrepot}
           onChange={(e) => setSelectedEntrepot(e.target.value)}
-          className="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-       required >  <option value="">selectionner l'entrepôt</option>
+          className="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          required
+        >
+          <option value="">Sélectionner l'entrepôt</option>
           {entrepots.map((entrepot) => (
             <option key={entrepot.id_entrepot} value={entrepot.id_entrepot}>
               {entrepot.nom_entrepot}
@@ -150,18 +170,18 @@ export default function EnginForm() {
       </div>
 
       <div className="relative z-0 w-full mb-5 group">
-        <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-400">
-          Etat
+        <label htmlFor="etat" className="block mb-2 text-sm font-medium text-gray-400">
+          État
         </label>
         <select
-          id="countries"
-          value={isGoodCondition ? "Très Bonne Etat" : "Mauvaise Etat"}
+          id="etat"
+          value={isGoodCondition ? "Disponible" : "Indisponible"}
           required
-          onChange={(e) => setIsGoodCondition(e.target.value === "Très Bonne Etat")}
-          className="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          onChange={(e) => setIsGoodCondition(e.target.value === "Disponible")}
+          className="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         >
-          <option value="Très Bonne Etat">Très Bonne Etat</option>
-          <option value="Mauvaise Etat">Mauvaise Etat</option>
+          <option value="Disponible">Disponible</option>
+          <option value="Indisponible">Indisponible</option>
         </select>
       </div>
 
@@ -175,4 +195,7 @@ export default function EnginForm() {
       </div>
     </form>
   );
-}
+};
+
+export default EnginForm;
+

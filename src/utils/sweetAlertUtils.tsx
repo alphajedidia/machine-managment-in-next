@@ -7,10 +7,14 @@ export const ConfirmationDialogue = (title: string, text: string): Promise<Sweet
     icon: 'warning',
     iconColor: '#ffde00',
     showCancelButton: true,
-    confirmButtonColor: '#fec60d',
-    cancelButtonColor: '#d33',
+    cancelButtonColor: '#fec60d',
+    confirmButtonColor: '#d33',
     cancelButtonText: 'Annuler',
     confirmButtonText: 'Oui, supprimer !',
+
+ 
+    
+   
     background:'#fdfdfd'
   });
 };
@@ -25,27 +29,13 @@ export const showErrorAddEntrepot = () => {
   });
 };
 
-export const showSuccessDeleteEntrepot = () => {
+export const showSuccess = (title: string, text: string) => {
   Swal.fire({
-    title: 'Supprimé !',
-    text: "L'entrepôt a été supprimé avec succès !",
+    title: title,
+    text: text,
     icon: 'success',
-    iconColor: '#00ac28' 
+    iconColor: '#00ac28',
+  
   });
 };
-export const showSuccessAddEntrepot  = () => {
-  Swal.fire({
-    title: 'Ajouté !',
-    text: "L'entrepôt a été ajouté avec succès !",
-    icon: 'success',
-    iconColor: '#00ac28' 
-  });
-};
-export const showSuccessAddEngin  = () => {
-  Swal.fire({
-    title: 'Ajouté !',
-    text: "L'engin a été ajouté avec succès !",
-    icon: 'success',
-    iconColor: '#00ac28' 
-  });
-};
+
