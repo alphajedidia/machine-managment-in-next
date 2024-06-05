@@ -1,9 +1,19 @@
 "use client";
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import { options, cards } from "./data";
 import Card from "./Card";
+import DatepickerComponent from "./Datepicker";
 
-const AllEngin = () => {
+const AllEngin = ({
+  searchParams,
+}: {
+  searchParams?: {
+    query?: string;
+    page?: string;
+  };
+}) => {
+  const query = searchParams?.query || '';
+  const currentPage = Number(searchParams?.page) || 1;
   const [selectedOption, setSelectedOption] = useState("all");
 
   const displayedCards =
@@ -21,7 +31,7 @@ const AllEngin = () => {
           <div className="flex flex-col h-full">
             <h2 className="text-xl font-bold mb-4">Filtrer</h2>
             {options.map((option) => (
-              <div key={option.value} className="flex items-center mb-3">
+              <div key={option.value} className="flex items-center mb-5">
                 <input
                   type="radio"
                   id={option.value}
@@ -38,17 +48,25 @@ const AllEngin = () => {
             ))}
           </div>
         </div>
-        <div
-          className="p-4 rounded-xl shadow-xl w-full ml-4 flex flex-wrap mt-4 bg-white"
-        >
-          {displayedCards.map((card, index) => (
-            <Card
-              title={card.title}
-              description1={card.description1}
-              prixJournalier={card.prixJournalier}
-              key={index}
-            />
-          ))}
+        <div className="p-4 rounded-xl shadow-xl w-full ml-4  mt-4 bg-white">
+          <div className=" ml-4 mr-6 mt-4">
+            <h3 className=" text-3xl font-bold ml-6 mb-4">
+              Date de location <span className=" text-red-600">*</span>
+            </h3>
+            <DatepickerComponent />
+          </div>
+          <Suspense key={query+currentPage} >
+          <div className="flex flex-wrap">
+            {displayedCards.map((card, index) => (
+              <Card
+                title={card.title}
+                description1={card.description1}
+                prixJournalier={card.prixJournalier}
+                key={index}
+              />
+            ))}
+          </div>
+          </Suspense>
         </div>
       </div>
     </div>
