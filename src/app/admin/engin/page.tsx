@@ -1,28 +1,18 @@
-'use client'
-import React, { useState } from 'react';
-import EnginTable from "./enginTable";
-import EnginForm from "./enginForm";
-import MainComponent from './mainComponent';
-
-
-export default function enginPage() {
-  
+import { EnginCardData } from "@/app/utils/data";
+import AllEnginCard from "@/components/cardEngin/AllEnginCard";
+import CardEngin from "@/components/cardEngin/CardEngin";
+import SearchBar from "@/components/navbar/SearchBar";
+import SearchBarEngin from "@/components/searchBarEngin/SearchBarEngin";
+import React from "react";
+const page = () => {
   return (
-    <div className="flex justify-center mt-4">
-      <section className="w-3/4">
-        <h1 className="text-3xl font-bold mb-8">Gestion des Entrepôts</h1>
-        <div className="flex">
-          <div className="w-3/5 mr-8">
-           
-          <EnginTable/>
-          </div>
-          <div className="w-2/5 ml-8">
-           <EnginForm/>
-   
-          </div>
-        </div>
-      </section>
+    <div className="w-full h-full flex flex-col flex-grow">
+      <SearchBarEngin />
+      <div className="flex flex-wrap overflow-y-auto border w-full h-full">
+        <AllEnginCard />
+      </div>
     </div>
   );
-}
+};
 
+export default page;
