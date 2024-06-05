@@ -9,18 +9,22 @@ import { SessionProvider } from "next-auth/react";
 const LayoutRoot = ({ children }: { children: React.ReactNode }) => {
   const path = usePathname();
   console.log(path);
+  const getLayout = () => {
+    if (path){
+      if (path.startsWith("/admin")) {
+        return <LayoutAdmin>{children}</LayoutAdmin>;
+      } else if (path.startsWith("/auth")) {
+        return <LayoutLogin>{children}</LayoutLogin>;
+      } else {
+        return <LayoutClient>{children}</LayoutClient>;
+      }
+    }
+  
+  };
   return (
     <SessionProvider>
-      {path &&
-        (path.startsWith("/admin") ? (
-          <LayoutAdmin>{children}</LayoutAdmin>
-        ) : path.startsWith("/auth") ? (
-          <LayoutLogin>{children}</LayoutLogin>
-        ) : (
-          <LayoutClient>{children}</LayoutClient>
-        ))}
-    </SessionProvider>
-  );
+       {getLayout()}
+    </SessionProvider>  );
 };
-
 export default LayoutRoot;
+

@@ -1,57 +1,28 @@
 'use client'
-import CardInfo from "@/components/cardInfo/CardInfo";
-import BarChart from "@/components/charts/BarChart";
-import { Engin } from "@prisma/client";
-const Dashboard = () => {
-  const revenueData = {
-    labels: [
-      "Jan",
-      "Fév",
-      "Mar",
-      "Avr",
-      "Mai",
-      "Juin",
-      "Juil",
-      "Août",
-      "Sept",
-      "Oct",
-      "Nov",
-      "Déc",
-    ],
-    values: [
-      65000, 59000, 80000, 81000, 56000, 55000, 40000, 65000, 71000, 88000,
-      92000, 78000,
-    ],
-  };
-  const mockData: Engin [] = [
-    {
-      matricule: "ENG001",
-      id_type: "TYPE001",
-      id_entrepot: "ENT001",
-      etat: true,
-      
-    },
-    {
-      matricule: "ENG002",
-      id_type: "TYPE002",
-      id_entrepot: "ENT002",
-      etat: false,
-    },{
-      matricule: "ENG002",
-      id_type: "TYPE002",
-      id_entrepot: "ENT002",
-      etat: false,
-    },
-  ];
+import React, { useState } from 'react';
+import EnginTable from "./enginTable";
+import EnginForm from "./enginForm";
+import MainComponent from './mainComponent';
+
+
+export default function enginPage() {
+  
   return (
-    <div className="flex">
-      <div className="w-[700px]">
-        <h2>Tableau de bord</h2>
-        <BarChart data={revenueData} />
-      </div>
-      <CardInfo titre={"Top Engin"} detail={mockData} />
+    <div className="flex justify-center mt-4">
+      <section className="w-3/4">
+        <h1 className="text-3xl font-bold mb-8">Gestion des Entrepôts</h1>
+        <div className="flex">
+          <div className="w-3/5 mr-8">
+           
+          <EnginTable/>
+          </div>
+          <div className="w-2/5 ml-8">
+           <EnginForm/>
+   
+          </div>
+        </div>
+      </section>
     </div>
   );
-};
+}
 
-export default Dashboard;

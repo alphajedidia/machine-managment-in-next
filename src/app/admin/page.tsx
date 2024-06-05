@@ -1,68 +1,54 @@
 "use client";
-import ProtectedRoute from "@/components/ProtectedRoute";
-import CardInfo from "@/components/cardInfo/CardInfo";
-import BarChart from "@/components/charts/BarChart";
-import { signOut } from "next-auth/react";
 import { Engin } from "@prisma/client";
-import ChartThree from "@/components/charts/Chart.Donut";
+import ChartDonut from "@/components/charts/Chart.Donut";
+import { TopEngin, locationData, series } from "../utils/data";
+
+import Location from "@/components/location/Location";
+import BarChart from "@/components/charts/BarChart";
+import CardTop from "@/components/card.top/CardTop";
+import Carousel from "@/components/carrousel/Carousel";
+
 export default function ProtectedPage() {
-  const revenueData = {
-    labels: [
-      "Jan",
-      "Fév",
-      "Mar",
-      "Avr",
-      "Mai",
-      "Juin",
-      "Juil",
-      "Août",
-      "Sept",
-      "Oct",
-      "Nov",
-      "Déc",
-    ],
-    values: [
-      65000, 59000, 80000, 81000, 56000, 55000, 40000, 65000, 71000, 88000,
-      92000, 78000,
-    ],
-  };
-  const mockData: Engin[] = [
+  const slides = [
     {
-      matricule: "ENG001",
-      id_type: "TYPE001",
-      id_entrepot: "ENT001",
-      etat: true,
+      StatChart: <ChartDonut />,
+      StatChartTitle: "Chart Title 1",
     },
     {
-      matricule: "ENG002",
-      id_type: "TYPE002",
-      id_entrepot: "ENT002",
-      etat: false,
+      StatChart: <ChartDonut />,
+      StatChartTitle: "Chart Title 2",
     },
     {
-      matricule: "ENG002",
-      id_type: "TYPE002",
-      id_entrepot: "ENT002",
-      etat: false,
+      StatChart: <ChartDonut />,
+      StatChartTitle: "Chart Title 3",
     },
   ];
+
   return (
-    <ProtectedRoute>
-      <div >
-        <h1>Page protégée</h1>
-        <p>
-          Cette page est accessible uniquement aux utilisateurs authentifiés.
-        </p>
-        <div className="flex">
-          <div className="w-[700px]">
-            <h2>Tableau de bord</h2>
-            <BarChart data={revenueData} />
-          </div>
-          <CardInfo titre={"Top Engin"} detail={mockData} />
+    <div className="relative flex justify-center items-center w-full h-5/6 mt-5 p-5 overflow-hidden">
+      <div className="relative flex flex-col justify-around items-center h-full w-3/5">
+        <div className="h-auto w-9/12 border">
+          <h1 className="text-center text-xl ">LOCATION PAR MOIS</h1>
+          <BarChart series={series} />
         </div>
-        <ChartThree />
-        <button onClick={() => signOut()}>Sign OUT</button>
+        <div className="relative h-2/5 w-1/2 shadow-lg">
+          <h1 className="text-center text-xl px-1 py-2">ENGIN DISPO</h1>
+
+          <Carousel slides={slides} />
+        </div>
       </div>
-    </ProtectedRoute>
+      <div className="relative flex flex-col justify-around items-center h-full w-6/12">
+        <div className="h-auto w-3/5 border shadow-lg">
+          <h1 className="text-center text-xl px-1 py-2">TOP ENGINS LOUER</h1>
+          <CardTop TopEngin={TopEngin} />
+        </div>
+        <div className=" w-3/4 border shadow-lg">
+          <h1 className="text-center text-xl px-1 py-2">LOCATION EN COURS</h1>
+          <div className="relative max-h-[300px] overscroll-x-none overflow-y-auto">
+            <Location location={locationData} showAll={false} />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
