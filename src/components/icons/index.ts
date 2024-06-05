@@ -4,19 +4,6 @@ import Cart from "./Cart";
 import Arrow from "./Arrow";
 import DeleteIcon from "./DeleteIcon";
 import Delete from "./Delete";
-<<<<<<< HEAD
-import UpdateIcon from "./UpdateIcon";
-
-export {
-    SearchIcon,
-    PhoneIcon,
-    Cart,
-    Arrow,
-    DeleteIcon,
-    Delete,
-    UpdateIcon
-}
-=======
 import Client from "./Client";
 import Location from "./Location";
 import Calendar from "./Calendar";
@@ -56,4 +43,3 @@ export {
   Logout,
   Back
 };
->>>>>>> 52feb4767bed2ba20aaa446f7ab351423300cf35
