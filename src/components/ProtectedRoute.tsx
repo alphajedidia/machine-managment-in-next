@@ -7,7 +7,7 @@ export default function ProtectedRoute({ children }: { children: React.ReactNode
   const router = useRouter();
 
   useEffect(() => {
-    if (status === "loading") return; 
+    if (status === "loading") return;  
     if (!session) {
       router.push("/auth");
     }

@@ -1,21 +1,50 @@
-import { Engin } from '@prisma/client';
-import React from 'react';
+import React from 'react'
+import { Status } from '../icons';
 
 interface ListLocationProps {
-  data: Engin[];
+  name: string;
+  engin: string;
+  dateInitial: string;
+  dateFinal: string;
 }
 
-const ListLocation: React.FC<ListLocationProps> = ({ data }) => {
+interface LocationProps {
+  location: ListLocationProps[];
+  showAll: boolean;
+}
+const ListLocation = ({ location, showAll }: LocationProps) => {
+  const today = new Date().toISOString().split("T")[0];
+
   return (
+<tbody className="divide-y divide-gray-200">
+{location.map((locationList, index) => {
+          const isOngoing = locationList.dateFinal >= today;
+          if (showAll || isOngoing) {
+            return (
+              <tr key={index} className="hover:bg-secondary-100 ">
+                <td className="px-6 py-4 text-sm font-medium text-gray-900">
+                  {locationList.name}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  {locationList.engin}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  {locationList.dateInitial}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  {locationList.dateFinal}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <Status etat={isOngoing} size="w-2 h-2" />
+                </td>
+              </tr>
+            );
+          }
+          return null;
+        })}
+</tbody>
+    
+  )
+}
 
-      <ul className='p-3 text-xl w-auto max-h-44  border overflow-auto'>
-        {data.map((item) => (
-          <li className='p-2' key={item.matricule}>
-            <p>{item.matricule} {item.id_type} {item.etat} <span className='underline hover:text-red-900 cursor-pointer'>detail</span></p>
-          </li>
-        ))}
-      </ul>
-
-  );
-};
-export default ListLocation;
+export default ListLocation
