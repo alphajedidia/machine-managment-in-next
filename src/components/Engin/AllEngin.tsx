@@ -1,11 +1,13 @@
 "use client";
 import React, { Suspense, useState } from "react";
-import { options, cards } from "./data";
+import { options, cards, CardData } from "./data";
 import Card from "./Card";
 import DatepickerComponent from "./Datepicker";
 import Pagination from "./Pagination";
 import { paginate } from "./paginate";
 import Filter from "../icons/Filter";
+import Engin from "@/app/Engin/page";
+import Close from "../icons/Close";
 
 const AllEngin = ({
   searchParams,
@@ -23,6 +25,8 @@ const AllEngin = ({
   const query = searchParams?.query || "";
   // const currentPage = Number(searchParams?.page) || 1;
   const [selectedOption, setSelectedOption] = useState("all");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState<CardData | null>(null);
 
   const displayedCards =
     selectedOption === "all"
@@ -36,6 +40,17 @@ const AllEngin = ({
     setCurrentPage(1); // Reset currentPage to 1 when changing the option
 
   };
+  const openModal = (card : CardData) => {
+    setSelectedCard(card);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedCard(null);
+  };
+
+
   return (
     <div className="  mt-4 mb-8">
       <div className="flex mx-28">
@@ -82,6 +97,7 @@ const AllEngin = ({
                   description1={card.description1}
                   prixJournalier={card.prixJournalier}
                   key={index}
+                  onClick={() => openModal(card)}
                 />
               ))}
             </div>
@@ -94,6 +110,24 @@ const AllEngin = ({
           </Suspense>
         </div>
       </div>
+      {isModalOpen && selectedCard && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white rounded-lg relative">
+            <button
+              className="absolute top-0 right-0 m-4 hover:scale-150 transition font-extrabold text-secondary-500 text-2xl"
+              onClick={closeModal}
+            >
+               <Close/>
+            </button>
+            <Engin
+              image_url="G.jpeg" // Replace with actual image_url if available in card data
+              nom_engin={selectedCard.title}
+              description={selectedCard.description1}
+              prix_journalier={selectedCard.prixJournalier}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

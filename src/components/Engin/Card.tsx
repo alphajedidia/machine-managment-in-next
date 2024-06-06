@@ -3,7 +3,7 @@ import { CardData } from "./data";
 import CustomButton from "../CustomButton";
 import { Cart } from "../icons";
 
-const Card = ({ title, description1, prixJournalier }: CardData) => {
+const Card = ({ title, description1, prixJournalier , onClick}: CardData &{onClick : ()=>void}) => {
   return (
 
     <div className=" max-w-80  flex h-fit flex-wrap  rounded-xl overflow-hidden shadow-lg mt-6 mx-3 my-4">
@@ -24,7 +24,7 @@ const Card = ({ title, description1, prixJournalier }: CardData) => {
         </div>
         <div className="flex justify-between mt-5 items-center mr-6 mb-5 mx-6 ">
             <CustomButton title="Reserver" containerStyles=" bg-primary-500 px-4 py-2 rounded-lg text-lg font-bold hover:scale-105 transition-all" iconAfter={<Cart iconStyle="w-4"/>}/>
-            <a href={title} className=" underline hover:scale-105 ">Voir l'engin</a>
+            <a onClick={onClick} className=" underline hover:scale-105 ">Voir l'engin</a>
           </div>
       </div>
     </div>
