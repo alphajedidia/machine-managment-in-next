@@ -1,12 +1,13 @@
 // app/engin/[title]/page.tsx
 "use client";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import EnginForm from "./EnginForm";
 import EnginTable from "./enginTable";
 import TableEngin from "@/components/typeEngin/TableEngin";
 import { EnginCardData } from "@/app/utils/data";
-import { ConfirmationDialogue, showSuccessDeleteEntrepot } from "@/utils/sweetAlertUtils";
+import { ConfirmationDialogue, showSuccess } from "@/utils/sweetAlertUtils";
 import { Back } from "@/components/icons";
+import Link from "next/link";
 interface EnginListProps {
   params: {
     title: string;
@@ -17,8 +18,35 @@ interface Engin {
   entrepot: string;
   status: string;
 }
+interface TypesEngin{
+  id_type:string;
+  id_categorie:string;
+  image_url:string;
+  nom_engin:string;
+  prix_journalier:number;
+  description:string;
+}
 
 const EnginList: React.FC<EnginListProps> = ({ params }) => {
+  const [typeEngins, setTypesEngins] = useState<TypesEngin[]>([]);
+
+useEffect(()=>{
+  const fetchTypesEngin = async () => {
+    try {
+      const response = await fetch("/api/typeEngin/GE");
+      console.log(response)
+      if (!response.ok) {
+        throw new Error("La requête pour récupérer les types d'engin a échoué");
+      }
+      const data = await response.json();
+      setTypesEngins(data);
+    } catch (error) {
+      console.error("Erreur lors de la récupération des types d'engin:", error);
+    }
+  };
+  fetchTypesEngin();
+  console.log(typeEngins)
+},[])
   const { title } = params;
   const [enginList, setEnginList] = useState<Engin[]>([
     { matricule: "1234", entrepot: "A1", status: "Available" },
@@ -50,7 +78,7 @@ const EnginList: React.FC<EnginListProps> = ({ params }) => {
           throw new Error('Failed to delete engin');
         }
         
-        showSuccessDeleteEntrepot();
+        showSuccess("Supprimé","Supression de l'engin avec succès!");
       })
       .catch((error) => {
         console.error('Erreur lors de la suppression de l\'engin :', error);
@@ -59,7 +87,7 @@ const EnginList: React.FC<EnginListProps> = ({ params }) => {
   };
   return (
     <div>
- <div> <Back iconStyle="w-20 h-20 "/>
+ <div> <Link href={'/admin/engin'}> <Back iconStyle="w-20 h-20 " /></Link>
     </div>
     <div className=" flex flex-grow h-full w-full justify-around items-center p-5">
       <div className="h-full  p-2 w-1/2 ">

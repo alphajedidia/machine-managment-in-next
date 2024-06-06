@@ -1,5 +1,5 @@
 'use client'
-import { ConfirmationDialogue, showSuccessDeleteEntrepot } from "@/utils/sweetAlertUtils";
+import { ConfirmationDialogue, showSuccess } from "@/utils/sweetAlertUtils";
 import React, { useEffect, useState } from "react";
 import MainComponent from "./mainComponent";
 
@@ -97,7 +97,7 @@ export default function EnginTable() {
           throw new Error('Failed to delete engin');
         }
         
-        showSuccessDeleteEntrepot();
+        showSuccess("Supprimé","l'engin a été supprimé avec succès!!");
       })
       .catch((error) => {
         console.error('Erreur lors de la suppression de l\'engin :', error);

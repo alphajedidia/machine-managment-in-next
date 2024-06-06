@@ -44,7 +44,7 @@ const Sidebar = () => {
       className="fixed top-0 left-0 z-40 w-72 overflow-hidden h-screen  text-xl pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-secondary-400 dark:border-gray-700"
       aria-label="Sidebar"
     >
-      <div className="flex flex-col justify-around h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-secondary-400">
+      <div className="flex flex-col justify-around h-full px-3 pb-4 overflow-y-auto bg-secondary-400">
         <ul className="space-y-2 font-medium">
           {SideNavItem &&
             SideNavItem.map((item, key) => (

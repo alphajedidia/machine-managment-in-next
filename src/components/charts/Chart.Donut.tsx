@@ -51,7 +51,7 @@ const options: ApexOptions = {
 
 const ChartDonut: React.FC = () => {
   const [state, setState] = useState<ChartThreeState>({
-    series: [65, 35,],
+    series: [90, 10,],
   });
 
   const handleReset = () => {

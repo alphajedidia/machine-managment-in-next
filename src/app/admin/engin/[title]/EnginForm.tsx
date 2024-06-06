@@ -1,6 +1,6 @@
 
 'use client'
-import {showSuccessAddEngin,showErrorAddEntrepot } from "@/utils/sweetAlertUtils";
+import {showSuccess,showErrorAddEntrepot } from "@/utils/sweetAlertUtils";
 import React, { useState, useEffect } from "react";
 
 interface Entrepot {
@@ -78,7 +78,7 @@ export default function EnginForm() {
       if (!response.ok) {
         showErrorAddEntrepot();
       }
-      showSuccessAddEngin();
+      showSuccess("Ajouté","L'ajout engin est ajouté avec succès");
 
       setMatricule("");
       setSelectedType("");

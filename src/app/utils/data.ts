@@ -200,7 +200,7 @@ const locationData = [
 
 const series = [{
   name: 'ENGINS',
-  data: [30, 40, 35, 50, 49, 60, 70, 91, 125, 140, 155, 160]
+  data: [130, 40, 35, 50, 49, 60, 70, 91, 125, 140, 155, 160]
 }];
 const locationInfo = [
  {
