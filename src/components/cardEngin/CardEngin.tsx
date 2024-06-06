@@ -1,13 +1,16 @@
-import React from "react";
+import React , { useState, useEffect }  from "react";
 import CustomButton from "../CustomButton";
 import { Eyes } from "../icons";
 import Link from "next/link";
 interface CardEnginProps {
+  id_type:string;
   title: string;
   description: string;
   prixJournalier: number;
 }
-const CardEngin = ({ title, description, prixJournalier }: CardEnginProps) => {
+
+
+const CardEngin = ({ id_type,title, description, prixJournalier }: CardEnginProps) => {
   return (
     <div className=" max-w-80  flex h-fit flex-wrap  rounded-xl overflow-hidden shadow-lg mt-6 mx-3 my-4">
       <div>
@@ -25,7 +28,7 @@ const CardEngin = ({ title, description, prixJournalier }: CardEnginProps) => {
           </div>
         </div>
         <div className="flex justify-between mt-5 items-center mr-6 mb-5 mx-6 ">
-          <Link href={`engin/${title}`}>
+          <Link href={`engin/${id_type}`}>
             <CustomButton
               title="Voir la Liste"
               containerStyles="bg-primary-500 px-4 py-2 rounded-lg text-lg font-bold hover:scale-105 transition-all"

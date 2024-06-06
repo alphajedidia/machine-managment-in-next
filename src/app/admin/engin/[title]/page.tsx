@@ -1,15 +1,14 @@
 // app/engin/[title]/page.tsx
 "use client";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import EnginForm from "./EnginForm";
 import EnginTable from "./enginTable";
 import TableEngin from "@/components/typeEngin/TableEngin";
 import { EnginCardData } from "@/app/utils/data";
-import {
-  ConfirmationDialogue,
-  showSuccessDeleteEntrepot,
-} from "@/utils/sweetAlertUtils";
+
+import { ConfirmationDialogue, showSuccess } from "@/utils/sweetAlertUtils";
 import { Back } from "@/components/icons";
+import Link from "next/link";
 interface EnginListProps {
   params: {
     title: string;
@@ -20,6 +19,7 @@ interface Engin {
   entrepot: string;
   status: string;
 }
+
 
 const EnginList: React.FC<EnginListProps> = ({ params }) => {
   const { title } = params;
@@ -56,7 +56,8 @@ const EnginList: React.FC<EnginListProps> = ({ params }) => {
           throw new Error("Failed to delete engin");
         }
 
-        showSuccessDeleteEntrepot();
+        
+        showSuccess("Supprimé","Supression de l'engin avec succès!");
       })
       .catch((error) => {
         console.error("Erreur lors de la suppression de l'engin :", error);
@@ -64,6 +65,15 @@ const EnginList: React.FC<EnginListProps> = ({ params }) => {
   };
   return (
     <div>
+
+ <div> <Link href={'/admin/engin'}> <Back iconStyle="w-20 h-20 " /></Link>
+    </div>
+    <div className=" flex flex-grow h-full w-full justify-around items-center p-5">
+      <div className="h-full  p-2 w-1/2 ">
+        <div className="flex flex-grow h-1/4 w-full">
+          <div className="w-1/2 h-auto border">
+            <img src="/G.jpeg" alt="img" />
+
       <div>
         {" "}
         <Back iconStyle="w-20 h-20 " />
@@ -89,6 +99,7 @@ const EnginList: React.FC<EnginListProps> = ({ params }) => {
                 <span>A</span>
               </p>
             </div>
+
           </div>
 
           <div className="h-[500px] border shadow-lg overflow-y-auto">

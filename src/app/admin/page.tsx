@@ -22,6 +22,7 @@ export default function ProtectedPage() {
       StatChart: <ChartDonut />,
       StatChartTitle: "Chart Title 3",
     },
+   
   ];
 
   return (
@@ -29,7 +30,7 @@ export default function ProtectedPage() {
       <div className="relative flex flex-col justify-around items-center h-full w-3/5">
         <div className="h-auto w-9/12 border">
           <h1 className="text-center text-xl ">LOCATION PAR MOIS</h1>
-          <BarChart series={series} />
+          <BarChart  />
         </div>
         <div className="relative h-2/5 w-1/2 shadow-lg">
           <h1 className="text-center text-xl px-1 py-2">ENGIN DISPO</h1>
