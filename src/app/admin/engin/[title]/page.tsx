@@ -18,35 +18,9 @@ interface Engin {
   entrepot: string;
   status: string;
 }
-interface TypesEngin{
-  id_type:string;
-  id_categorie:string;
-  image_url:string;
-  nom_engin:string;
-  prix_journalier:number;
-  description:string;
-}
+
 
 const EnginList: React.FC<EnginListProps> = ({ params }) => {
-  const [typeEngins, setTypesEngins] = useState<TypesEngin[]>([]);
-
-useEffect(()=>{
-  const fetchTypesEngin = async () => {
-    try {
-      const response = await fetch("/api/typeEngin/GE");
-      console.log(response)
-      if (!response.ok) {
-        throw new Error("La requête pour récupérer les types d'engin a échoué");
-      }
-      const data = await response.json();
-      setTypesEngins(data);
-    } catch (error) {
-      console.error("Erreur lors de la récupération des types d'engin:", error);
-    }
-  };
-  fetchTypesEngin();
-  console.log(typeEngins)
-},[])
   const { title } = params;
   const [enginList, setEnginList] = useState<Engin[]>([
     { matricule: "1234", entrepot: "A1", status: "Available" },
