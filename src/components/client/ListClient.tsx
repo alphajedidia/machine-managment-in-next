@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Email, PhoneIcon } from "../icons";
+import { fetchClients } from "@/app/utils/api";
 interface ListClientProps {
   nom_client: string;
   email: string;
@@ -7,13 +8,34 @@ interface ListClientProps {
   numero_carte_bancaire: string;
 }
 
-const ListClient = ({
-  ListClient,
-  searchTerm,
-}: {
-  ListClient: ListClientProps[];
-  searchTerm: string;
-}) => {
+const ListClient = ({ searchTerm }: { searchTerm: string }) => {
+  const [clients, setClients] = useState<ListClientProps[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const loadClients = async () => {
+      try {
+        const data = await fetchClients();
+        setClients(data);
+      } catch (error: any) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadClients();
+  }, []);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
+
   return (
     <div>
       <table className="min-w-full h-full divide-y divide-gray-200">
@@ -37,26 +59,24 @@ const ListClient = ({
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-200">
-          {ListClient.filter((ClientItems) =>
-            ClientItems.nom_client
-              .toLowerCase()
-              .includes(searchTerm.toLowerCase())
-          ).map((Client, index) => (
-            <tr key={index} className="hover:bg-secondary-100 ">
+          {clients.filter((client) =>
+            client.nom_client.toLowerCase().includes(searchTerm.toLowerCase())
+          ).map((client, index) => (
+            <tr key={index} className="hover:bg-secondary-100">
               <td className="px-6 py-4 text-sm font-medium text-gray-900">
-                {Client.nom_client}
+                {client.nom_client}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {Client.email}
+                {client.email}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {Client.telephone}
+                {client.telephone}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {Client.numero_carte_bancaire}
+                {client.numero_carte_bancaire}
               </td>
               <td className="flex text-center justify-around px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                <Email iconStyle="w-4 h-4 " />
+                <Email iconStyle="w-4 h-4" />
                 <PhoneIcon iconStyle="w-4 h-4" />
               </td>
             </tr>

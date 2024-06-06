@@ -21,7 +21,7 @@ const TableLocation: React.FC<TableClientProps> = ({ Title }) => {
         </div>
       </div>
       <div className="h-[500px] border shadow-lg overflow-y-auto ">
-        <ListClient ListClient={client} searchTerm={searchTerm} />
+        <ListClient searchTerm={searchTerm} />
       </div>
     </div>
   );
