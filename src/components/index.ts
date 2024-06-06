@@ -4,7 +4,7 @@ import CustomButton from "./CustomButton";
 import Footer from "./Footer";
 import Logo from "./navbar/Logo";
 import LinkNav from "./navbar/LinkNav";
-import Product from "./engin/Product";
+import Product from "./Engin/Product";
 import Logout from "./icons/Logout";
 // import Model from "./modelVR/Model";
 export{

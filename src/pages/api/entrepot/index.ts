@@ -8,8 +8,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (req.method === 'POST') {
         try {
             const entrepotsData = req.body as FormData;
-
-
             if (!Array.isArray(entrepotsData)) {
                 return res.status(400).json({ error: 'Le corps de la requête doit contenir un tableau d\'objets JSON' });
             }
@@ -17,7 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             const createdEntrepots = await prisma.entrepot.createMany({
                 data: entrepotsData,
             });
-
+            
             res.status(201).json(createdEntrepots);
         } catch (error) {
             console.error('Error creating entrepots:', error);
