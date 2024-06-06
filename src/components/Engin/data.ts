@@ -109,6 +109,30 @@ export const cards: Cards = {
         title: "Card 2 Option 7",
         description1: "Description1 de la carte 2 Option 3",
       },
+      {
+        prixJournalier: "25 000 AR",
+        title: "Card 1 Option 7",
+        description1: "Description1 de la carte 1 Option 3",
+      },
+      {
+        prixJournalier: "25 000 AR",
+        title: "Card 2 Option 7",
+        description1: "Description1 de la carte 2 Option 3",
+      },{
+        prixJournalier: "25 000 AR",
+        title: "Card 1 Option 7",
+        description1: "Description1 de la carte 1 Option 3",
+      },
+      {
+        prixJournalier: "25 000 AR",
+        title: "Card 2 Option 7",
+        description1: "Description1 de la carte 2 Option 3",
+      },
+      {
+        prixJournalier: "25 000 AR",
+        title: "Card 2 Option 7",
+        description1: "Description1 de la carte 2 Option 3",
+      },
     ],
     option8: [
       {
