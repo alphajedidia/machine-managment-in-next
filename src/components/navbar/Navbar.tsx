@@ -5,9 +5,8 @@ import Logo from "./Logo";
 import LinkNav from "./LinkNav";
 import CustomButton from "../CustomButton";
 import { Cart, PhoneIcon, SearchIcon } from "../icons";
-import { CardData } from "../Engin/data";
 
-function Navbar({ cartCount, cartItems }: { cartCount: number; cartItems: CardData[] }) {
+function Navbar({ cartCount }: { cartCount: number; }) {
   
 
   const handleCartClick = () => {
@@ -57,7 +56,7 @@ function Navbar({ cartCount, cartItems }: { cartCount: number; cartItems: CardDa
         <CustomButton
           iconBefore={<Cart iconStyle="w-6" />}
           title={cartCount}
-          containerStyles=" py-[5px] border border-primary-500 text-secondary-600 rounded font-light text-xl px-4 bg-primary-500 font-black hover:scale-105 transition-all"
+          containerStyles=" py-[5px] border border-primary-500 text-secondary-500 rounded font-bold text-xl px-4 bg-primary-500 font-black hover:scale-105 transition-all"
           handleClick={handleCartClick}
         />
       </div>

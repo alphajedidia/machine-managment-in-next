@@ -9,6 +9,7 @@ import Filter from "../icons/Filter";
 import Engin from "@/app/Engin/page";
 import Close from "../icons/Close";
 import { CartContext } from "@/app/client/layout";
+import { showSuccesToCart } from "@/utils/sweetAlertUtils";
 
 
 const AllEngin = () => {
@@ -46,6 +47,7 @@ const AllEngin = () => {
     setSelectedCard(null);
   };
   const incrementCart = (card: CardData) => {
+    showSuccesToCart();
     setCartCount(cartCount + 1);
     setCartItems([...cartItems, card]);
   };
@@ -122,6 +124,7 @@ const AllEngin = () => {
               nom_engin={selectedCard.title}
               description={selectedCard.description1}
               prix_journalier={selectedCard.prixJournalier}
+              onReserve={()=>incrementCart(selectedCard)}
             />
           </div>
         </div>
