@@ -1,9 +1,15 @@
 import React from "react";
 import { CardData } from "./data";
 import CustomButton from "../CustomButton";
-import { Cart } from "../icons";
+import { Cart, Eyes } from "../icons";
 
-const Card = ({ title, description1, prixJournalier , onClick}: CardData &{onClick : ()=>void}) => {
+interface CardProps extends CardData {
+  onClick: () => void;
+  onReserve: () => void;
+}
+
+const Card = ({ title, description1, prixJournalier , onClick , onReserve}: CardProps) => {
+
   return (
 
     <div className=" max-w-80  flex h-fit flex-wrap  rounded-xl overflow-hidden shadow-lg mt-6 mx-3 my-4">
@@ -23,8 +29,8 @@ const Card = ({ title, description1, prixJournalier , onClick}: CardData &{onCli
 
         </div>
         <div className="flex justify-between mt-5 items-center mr-6 mb-5 mx-6 ">
-            <CustomButton title="Reserver" containerStyles=" bg-primary-500 px-4 py-2 rounded-lg text-lg font-bold hover:scale-105 transition-all" iconAfter={<Cart iconStyle="w-4"/>}/>
-            <a onClick={onClick} className=" underline hover:scale-105 ">Voir l'engin</a>
+            <CustomButton  title="Reserver" containerStyles=" bg-primary-500 px-4 py-2 rounded-lg text-lg font-bold hover:scale-105 transition-all" iconAfter={<Cart iconStyle="w-4"/>} handleClick={onReserve}/>
+            <a onClick={onClick} className="flex items-center underline hover:scale-105 cursor-pointer ">Voir l'engin <Eyes iconStyle="w-4"/></a>
           </div>
       </div>
     </div>
