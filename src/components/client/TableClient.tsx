@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, ChangeEvent } from "react";
-import { client } from "@/app/utils/data";
 import ListClient from "./ListClient";
 import SeachBarClient from "./SeachBarClient";
 interface TableClientProps {

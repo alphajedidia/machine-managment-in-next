@@ -9,6 +9,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const mostLoutedTypes = await prisma.type_engin.findMany({
         select: {
           nom_engin: true,
+          prix_journalier:true,
           _count: {
             select: {
               engins: {

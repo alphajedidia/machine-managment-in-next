@@ -19,7 +19,7 @@ const NavBarAdmin = ({ NavTitle }: { NavTitle: String }) => {
 
           <div className="flex items-center ">
             <div className="flex  items-center ms-3">
-              <div className="flex items-center w-80 justify-between ">
+              <div className="flex items-center w-96 justify-between ">
                 <Notif iconStyle="w-10 h-10  text-primary-400 hover:cursor-pointer" />
                 <button
                   type="button"
