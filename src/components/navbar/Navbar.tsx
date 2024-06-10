@@ -1,10 +1,19 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Logo from "./Logo";
 import LinkNav from "./LinkNav";
 import CustomButton from "../CustomButton";
 import { Cart, PhoneIcon, SearchIcon } from "../icons";
+import { CardData } from "../Engin/data";
 
-function Navbar() {
+function Navbar({ cartCount, cartItems }: { cartCount: number; cartItems: CardData[] }) {
+  
+
+  const handleCartClick = () => {
+    window.location.href = "/client/Cart"; // Replace with actual path
+  };
+
   const navItem = [
     {
       link: "/",
@@ -47,8 +56,9 @@ function Navbar() {
         />
         <CustomButton
           iconBefore={<Cart iconStyle="w-6" />}
-          title="0"
+          title={cartCount}
           containerStyles=" py-[5px] border border-primary-500 text-secondary-600 rounded font-light text-xl px-4 bg-primary-500 font-black hover:scale-105 transition-all"
+          handleClick={handleCartClick}
         />
       </div>
     </div>
