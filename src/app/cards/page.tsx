@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 
-interface CardData {
+export interface CardData {
   title: string;
   description1: string;
   prixJournalier: string;
