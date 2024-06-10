@@ -59,7 +59,7 @@ const Engin = ({
           
           <div className="flex ">
             <CustomButton title="-" containerStyles="h-12 w-12 bg-gray-200"/>
-            <input type="number" className="w-12 " />
+            <input type="number" defaultValue={1} className="w-12 pl-4 text-lg font-bold" />
             <CustomButton title="+" containerStyles=" w-12 bg-gray-200"/>
           </div>
           <CustomButton iconBefore={<Cart iconStyle="w-6" />} title="Reserver" containerStyles=" px-20 bg-primary-500  my-8 py-3 border border-primary-500 text-secondary-600 rounded-lg text-xl hover:scale-105 transition-all"  />

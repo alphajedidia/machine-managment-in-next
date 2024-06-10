@@ -1,5 +1,5 @@
 "use client";
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useContext, useState } from "react";
 import { options, cards, CardData } from "./data";
 import Card from "./Card";
 import DatepickerComponent from "./Datepicker";
@@ -8,25 +8,21 @@ import { paginate } from "./paginate";
 import Filter from "../icons/Filter";
 import Engin from "@/app/Engin/page";
 import Close from "../icons/Close";
+import { CartContext } from "@/app/client/layout";
 
-const AllEngin = ({
-  searchParams,
-}: {
-  searchParams?: {
-    query?: string;
-    page?: string;
-  };
-}) => {
+
+const AllEngin = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 4;
   const onPageChange = (page: number) => {
     setCurrentPage(page);
   };
-  const query = searchParams?.query || "";
   // const currentPage = Number(searchParams?.page) || 1;
   const [selectedOption, setSelectedOption] = useState("all");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState<CardData | null>(null);
+
+  const { cartCount, setCartCount, cartItems, setCartItems } = useContext(CartContext);
 
   const displayedCards =
     selectedOption === "all"
@@ -49,7 +45,10 @@ const AllEngin = ({
     setIsModalOpen(false);
     setSelectedCard(null);
   };
-
+  const incrementCart = (card: CardData) => {
+    setCartCount(cartCount + 1);
+    setCartItems([...cartItems, card]);
+  };
 
   return (
     <div className="  mt-4 mb-8">
@@ -89,7 +88,6 @@ const AllEngin = ({
             </h3>
             <DatepickerComponent />
           </div>
-          <Suspense key={query + currentPage}>
             <div className="flex flex-wrap">
               {paginatedPosts.map((card, index) => (
                 <Card
@@ -98,6 +96,7 @@ const AllEngin = ({
                   prixJournalier={card.prixJournalier}
                   key={index}
                   onClick={() => openModal(card)}
+                  onReserve={()=>incrementCart(card)} // Pass increment function
                 />
               ))}
             </div>
@@ -107,12 +106,11 @@ const AllEngin = ({
                 pageSize={pageSize} // 4
                 onPageChange={onPageChange}
               />
-          </Suspense>
         </div>
       </div>
       {isModalOpen && selectedCard && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white rounded-lg relative">
+          <div className="bg-white rounded-xl relative">
             <button
               className="absolute top-0 right-0 m-4 hover:scale-150 transition font-extrabold text-secondary-500 text-2xl"
               onClick={closeModal}

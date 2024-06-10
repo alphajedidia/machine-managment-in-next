@@ -1,6 +1,7 @@
 import React from 'react'
 import { CardData } from '@/components/Engin/data'
 import CustomButton from '../CustomButton'
+import { Delete } from '../icons'
 
 const Element = ({title, description1, prixJournalier} : CardData ) => {
   return (
@@ -13,16 +14,16 @@ const Element = ({title, description1, prixJournalier} : CardData ) => {
             <p> Prix Journalier : <span className=' font-normal'>{prixJournalier}</span></p>
         </div>
         </div>
-        <div>
-          <p className=' font-bold mb-2 text-lg'>Quantité d'équipement</p>
-          <div className="flex mb-4">
+        {/* <div>
+          <p className=' font-bold mb-2 text-lg'>Quantité</p>
+          <div className="flex mb-4 mr-2">
             <CustomButton title="-" containerStyles="h-12 w-12 bg-gray-200"/>
             <input type="number" className="w-16 border border-gray-200 outline-none text-lg px-2" />
             <CustomButton title="+" containerStyles=" w-12 bg-gray-200"/>
           </div>
-        </div>
+        </div> */}
         <div className=' flex mb-4'>
-          <CustomButton title='Del' containerStyles=' px-6 py-4 bg-red-200 mr-6 shadow font-bold rounded hover:scale-105 transition-all'/>
+          <CustomButton title='' iconAfter= {<Delete/>} containerStyles=' px-6 py-4 bg-red-200 mr-6 shadow font-bold rounded hover:scale-105 transition-all'/>
         </div>
     </div>
   )

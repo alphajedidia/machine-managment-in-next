@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import LayoutRoot from "@/components/layout/LayoutRoot";
-const inter = Inter({ subsets: ["latin"] });
+
+
 
 export const metadata: Metadata = {
-  title: "Gestion location d'Engin",
-  description: "Developed by Us",
+  title: "Location Engin",
+  description: "Developed by US",
 };
 
 export default function RootLayout({
@@ -16,9 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <LayoutRoot>{children}</LayoutRoot>
-        </body>
+      <body>{children}</body>
     </html>
   );
 }

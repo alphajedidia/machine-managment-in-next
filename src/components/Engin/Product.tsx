@@ -1,6 +1,6 @@
 import React from 'react'
 import SearchBar from '../navbar/SearchBar'
-import Card from './AllEngin'
+import AllEngin from './AllEngin'
 
 
 const Product = () => {
@@ -9,7 +9,7 @@ const Product = () => {
   return (
     <div>
         <SearchBar/>
-        <Card/>
+        <AllEngin/>
     </div>
   )
 }
