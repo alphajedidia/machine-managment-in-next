@@ -50,7 +50,7 @@ export default function ProtectedPage() {
         const formattedData = data.map((item: any) => ({
           enginNom: item.nom_engin,
           prix: item.prix_journalier,
-          nombre_location: item._count.Engin,
+          nombre_location: item._count.engins,
         }));
 
         setTopEngins(formattedData);
