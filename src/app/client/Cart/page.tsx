@@ -26,15 +26,17 @@ const page = () => {
               cartItems.map((item, index) => (
                 <div
                   key={index}
-                  className="w-full bg-white border flex justify-between items-end rounded-md overflow-hidden shadow mb-6"
+                  className="w-full bg-white border flex justify-between items-center rounded-md overflow-hidden shadow mb-6"
                 >
                   <Element
                     key={index}
+                    imgUrl={item.imgUrl}
+                    category={item.category}
                     title={item.title}
                     description1={item.description1}
                     prixJournalier={item.prixJournalier}
                   />
-                  <div className=" flex mb-4">
+                  <div className=" flex ">
                     <CustomButton
                       title=""
                       iconAfter={<Delete />}
