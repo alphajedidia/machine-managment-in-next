@@ -8,20 +8,23 @@ interface CardProps extends CardData {
   onReserve: () => void;
 }
 
-const Card = ({ title, description1, prixJournalier , onClick , onReserve}: CardProps) => {
+const Card = ({ title,imgUrl, description1, prixJournalier , onClick , onReserve}: CardProps) => {
 
   return (
 
     <div className=" max-w-80  flex h-fit flex-wrap  rounded-xl overflow-hidden shadow-lg mt-6 mx-3 my-4">
       <div>
-        <img src="G.jpeg" alt="img" />
+        <img src={imgUrl} alt="img" className=" h-52 w-full" />
         <div className=" mx-6 my-3 h-[120px] ">
           <div>
             <h3 className=" font-black text-secondary-700 text-xl">{title}</h3>
             <p className=" font-semibold mt-2">
-              Moteur : <span className=" font-light">{description1}</span>
+              Moteur : <span className=" font-light">{description1.split(' * ')[0]}</span>
             </p>
-            <p className="font-semibold mt-2">
+            <p className=" font-semibold mt-1">
+              Consomation : <span className=" font-light">{description1.split(' * ')[2]}</span>
+            </p>
+            <p className="font-semibold mt-1">
               Prix Journalier :{" "}
               <span className=" font-light">{prixJournalier}</span>
             </p>

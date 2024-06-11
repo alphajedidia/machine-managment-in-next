@@ -53,15 +53,15 @@ const AllEngin = () => {
   };
 
   return (
-    <div className="  mt-4 mb-8">
+    <div className="  mt-4 mb-8  pb-4">
       <div className="flex mx-28">
-        <div className="sidebar bg-white py-4 rounded-md shadow-xl w-1/6 text-secondary-700 mt-4 px-8 text-lg h-fit">
+        <div className="sidebar bg-white  py-4 rounded-md shadow-xl w-1/6 text-secondary-700 mt-4 px-8 text-lg">
           <div className="flex flex-col h-full">
             <h2 className="text-xl font-bold mb-4 flex self-center items-center">
               <p className="mr-4">Filtrer</p> <Filter />
             </h2>
             {options.map((option) => (
-              <div key={option.value} className="flex items-center ">
+              <div key={option.value} className="flex items-center h-full">
                 <input
                   type="radio"
                   id={option.value}
@@ -94,6 +94,8 @@ const AllEngin = () => {
               {paginatedPosts.map((card, index) => (
                 <Card
                   title={card.title}
+                  imgUrl={card.imgUrl}
+                  category={card.category}
                   description1={card.description1}
                   prixJournalier={card.prixJournalier}
                   key={index}
@@ -120,10 +122,11 @@ const AllEngin = () => {
                <Close/>
             </button>
             <Engin
-              image_url="G.jpeg" // Replace with actual image_url if available in card data
-              nom_engin={selectedCard.title}
-              description={selectedCard.description1}
-              prix_journalier={selectedCard.prixJournalier}
+              imgUrl={selectedCard.imgUrl} // Replace with actual image_url if available in card data
+              title={selectedCard.title}
+              category={selectedCard.category}
+              description1={selectedCard.description1}
+              prixJournalier={selectedCard.prixJournalier}
               onReserve={()=>incrementCart(selectedCard)}
             />
           </div>
