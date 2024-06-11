@@ -19,7 +19,7 @@ const CardEngin = ({ id_type,title, description, prixJournalier }: CardEnginProp
           <div>
             <h3 className=" font-black text-secondary-700 text-xl">{title}</h3>
             <p className=" font-semibold mt-2">
-              Moteur : <span className=" font-light">{description}</span>
+              Description : <span className=" font-light">{description}</span>
             </p>
             <p className="font-semibold mt-2">
               Prix Journalier :{" "}

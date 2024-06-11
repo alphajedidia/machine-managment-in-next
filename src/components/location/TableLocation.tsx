@@ -21,12 +21,17 @@ const TableLocation: React.FC<TableLocationProps> = ({ Title }) => {
       try {
         const response = await axios.get(`/api/location`);
         SetLocationData(response.data);
+        console.log(response.data)
       } catch (err:any) {
         setError(err.message || 'Error fetching engines');
       }
     };
 
-    fetchLocation();
+    fetchLocation();   
+     {console.log(locationData)}
+
+
+
   }, []);
 
   return (

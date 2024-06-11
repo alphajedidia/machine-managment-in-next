@@ -11,6 +11,7 @@ interface FetchProps<T> {
 export const fetchData = async <T>({ url, setter, message }: FetchProps<T>) => {
   try {
     const response = await axios.get<T>(urlForm+ url);
+    console.log(response.data)
     setter(response.data);
   } catch (error) {
     console.error(error);
