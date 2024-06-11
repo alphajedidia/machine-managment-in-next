@@ -22,11 +22,7 @@ const EnginList: React.FC<EnginListProps> = ({ params }) => {
         <DescriEngin title={title} />
       </div>
       </div>
-      <div className="h-2/3 w-1/4 border">
-        <EnginForm />
-      </div>
-    </div>
-    </div>
+      
    
   );
 };
