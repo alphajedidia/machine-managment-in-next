@@ -13,13 +13,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           prix_journalier:true,
           _count: {
             select: {
-              Engin: true, 
+              engins: true, 
             },
           },
         },
       });
 
-      const sortedTypes = typesWithEnginCount.sort((a, b) => b._count.Engin - a._count.Engin);
+      const sortedTypes = typesWithEnginCount.sort((a, b) => b._count.engins - a._count.engins);
 
       res.status(200).json(sortedTypes);
     } catch (error) {
