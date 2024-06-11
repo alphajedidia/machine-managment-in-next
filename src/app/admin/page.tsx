@@ -7,12 +7,10 @@ import Location from "@/components/location/Location";
 import BarChart from "@/components/charts/BarChart";
 import CardTop from "@/components/card.top/CardTop";
 import Carousel from "@/components/carrousel/Carousel";
-import React,{useEffect,useState} from "react";
-interface ListTopProps {
-  enginNom: string;
-  prix: number;
-  nombre_location: number;
-}
+
+import { ChangeEvent, useEffect,useState } from "react";
+import axios from "axios";
+
 
 export default function ProtectedPage() {
   const slides = [
