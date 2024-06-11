@@ -7,12 +7,10 @@ import Location from "@/components/location/Location";
 import BarChart from "@/components/charts/BarChart";
 import CardTop from "@/components/card.top/CardTop";
 import Carousel from "@/components/carrousel/Carousel";
-import React,{useEffect,useState} from "react";
-interface ListTopProps {
-  enginNom: string;
-  prix: number;
-  nombre_location: number;
-}
+
+import { ChangeEvent, useEffect,useState } from "react";
+import axios from "axios";
+
 
 export default function ProtectedPage() {
   const slides = [
@@ -59,6 +57,26 @@ export default function ProtectedPage() {
   }, []);
 
 
+  const [locationData,SetLocationData] = useState([])
+  const [errors,setError] =useState(null)
+   
+  useEffect(() => {
+    const fetchLocation = async () => {
+      try {
+        const response = await axios.get(`/api/location`);
+        SetLocationData(response.data);
+        console.log(response.data)
+      } catch (err:any) {
+        setError(err.message || 'Error fetching engines');
+      }
+    };
+
+    fetchLocation();   
+     {console.log(locationData)}
+
+
+
+  }, []);
   return (
     <div className="relative flex justify-center items-center w-full h-5/6 mt-5 p-5 overflow-hidden">
       <div className="relative flex flex-col justify-around items-center h-full w-3/5">
@@ -77,7 +95,7 @@ export default function ProtectedPage() {
           <h1 className="text-center text-xl px-1 py-2">TOP ENGINS LOUER</h1>
           <CardTop TopEngin={topEngins} />
         </div>
-        <div className=" w-3/4 border shadow-lg">
+        <div className=" w-3/4 shadow-lg">
           <h1 className="text-center text-xl px-1 py-2">LOCATION EN COURS</h1>
           <div className="relative max-h-[300px] overscroll-x-none overflow-y-auto">
             <Location location={locationData} showAll={false} />

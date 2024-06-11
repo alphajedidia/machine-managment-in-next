@@ -19,16 +19,16 @@ const TableEngin: React.FC<TableEnginProps> = ({ engin, onEdit, onDelete }) => {
       <table className="min-w-full h-full divide-y divide-gray-200">
         <thead className="bg-primary-400">
           <tr className="text-tertiary-900">
-            <th className="sticky top-0 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider bg-primary-400">
+            <th className="sticky top-0 px-6 py-3 text-left text-xl font-medium uppercase tracking-wider bg-primary-400">
               MATRICULE
             </th>
-            <th className="sticky top-0 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider bg-primary-400">
+            <th className="sticky top-0 px-6 py-3 text-left text-xl font-medium uppercase tracking-wider bg-primary-400">
               ENTREPOT
             </th>
-            <th className="sticky top-0 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider bg-primary-400">
+            <th className="sticky top-0 px-6 py-3 text-left text-xl font-medium uppercase tracking-wider bg-primary-400">
               STATUS
             </th>
-            <th className="sticky top-0 px-6 py-3 text-center text-xs font-medium uppercase tracking-wider bg-primary-400">
+            <th className="sticky top-0 px-6 py-3 text-center text-xl font-medium uppercase tracking-wider bg-primary-400">
               ACTION
             </th>
           </tr>
@@ -36,16 +36,16 @@ const TableEngin: React.FC<TableEnginProps> = ({ engin, onEdit, onDelete }) => {
         <tbody className="divide-y divide-gray-200">
           {engin.map((enginList, index) => (
             <tr key={index} className="hover:bg-secondary-100">
-              <td className="px-6 py-4 text-sm font-medium text-gray-900">
+              <td className="px-6 py-4 text-xl font-medium text-gray-900">
                 {enginList.matricule}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <td className="px-6 py-4 whitespace-nowrap text-xl text-gray-500">
                 {enginList.entrepot}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <td className="px-6 py-4 whitespace-nowrap text-xl text-gray-500">
                 {enginList.status}
               </td>
-              <td className="flex justify-around  px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <td className="flex justify-around  px-6 py-4 whitespace-nowrap text-xl text-gray-500">
                 <button
                   className="text-blue-600 hover:text-blue-900"
                   onClick={() => onEdit(index)}

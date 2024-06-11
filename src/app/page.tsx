@@ -1,11 +1,6 @@
-import { Hero, Product } from "@/components";
-import Image from "next/image";
+import { redirect } from 'next/navigation';
 
-export default function Home() {
-  return (
-    <main className=" overflow-hidden">
-      <Hero/>
-      <Product/>
-    </main>
-  );
+export default function HomePage() {
+  redirect('/client');
+  return null;
 }

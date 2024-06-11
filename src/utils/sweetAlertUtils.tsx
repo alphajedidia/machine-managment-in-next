@@ -11,10 +11,6 @@ export const ConfirmationDialogue = (title: string, text: string): Promise<Sweet
     confirmButtonColor: '#d33',
     cancelButtonText: 'Annuler',
     confirmButtonText: 'Oui, supprimer !',
-
- 
-    
-   
     background:'#fdfdfd'
   });
 };
@@ -28,6 +24,15 @@ export const showErrorAddEntrepot = () => {
     // footer: '<a href="#">Why do I have this issue?</a>'
   });
 };
+export const showSuccesToCart=() =>{
+  return Swal.fire({
+    position: "top",
+    icon: "success",
+    title: "Ajouter à la demande",
+    showConfirmButton: false,
+    timer: 1500
+  });
+}
 
 export const showSuccess = (title: string, text: string) => {
   Swal.fire({

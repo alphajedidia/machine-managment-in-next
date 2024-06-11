@@ -1,8 +1,9 @@
+"use client"
 import React from "react";
 import { SessionProvider } from "next-auth/react";
-import ProtectedRoute from "../ProtectedRoute";
-import NavBarAdmin from "../navBar.admin/NavBar.admin";
-import SideBar from "../sideBar/SideBar";
+import ProtectedRoute from "../../components/ProtectedRoute";
+import NavBarAdmin from "../../components/navBar.admin/NavBar.admin";
+import SideBar from "../../components/sideBar/SideBar";
 const LayoutAdmin = ({ children }: { children: React.ReactNode }) => {
   console.log('admin')
   return (

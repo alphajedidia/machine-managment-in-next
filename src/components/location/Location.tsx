@@ -1,10 +1,11 @@
 import React from "react";
 import { Status } from "../icons";
+import { removeDuplicatesAndJoin } from "@/app/utils/tools";
 interface ListLocationProps {
-  name: string;
-  engin: string;
-  dateInitial: string;
-  dateFinal: string;
+  nom_client: string;
+  nom_engins: string[];
+  date_debut: string;
+  date_fin: string;
 }
 
 interface LocationProps {
@@ -13,7 +14,7 @@ interface LocationProps {
 }
 
 function Location({ location, showAll }: LocationProps) {
-  const today = new Date().toISOString().split("T")[0];
+    const today = new Date().toISOString().split("T")[0];
   return (
     <table className="min-w-full h-full divide-y divide-gray-200">
       <thead className="bg-primary-400">
@@ -37,21 +38,23 @@ function Location({ location, showAll }: LocationProps) {
       </thead>
       <tbody className="divide-y divide-gray-200">
         {location.map((locationList, index) => {
-          const isOngoing = locationList.dateFinal >= today;
+          const isOngoing = locationList.date_fin>= today;
           if (showAll || isOngoing) {
             return (
               <tr key={index} className="hover:bg-secondary-100 ">
                 <td className="px-6 py-4 text-sm font-medium text-gray-900">
-                  {locationList.name}
+                  {locationList.nom_client}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {locationList.engin}
+                  {
+                    removeDuplicatesAndJoin(locationList.nom_engins)
+                  }
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {locationList.dateInitial}
+                  {locationList.date_debut}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {locationList.dateFinal}
+                  {locationList.date_fin}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 <Status etat={isOngoing} size="w-2 h-2" />
