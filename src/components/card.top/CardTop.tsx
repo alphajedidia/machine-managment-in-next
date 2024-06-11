@@ -6,9 +6,9 @@ interface ListTopProps {
   nombre_location: number;
 }
 
-const CardTop = ({ TopEngin }: { TopEngin: ListTopProps[] }) => {
+const CardTop: React.FC<{ TopEngin: ListTopProps[] }> = ({ TopEngin }) => {
   return (
-    <div className="relative max-h-[300px] overscroll-x-none overflow-y-auto  ">
+    <div className="relative max-h-[300px] overscroll-x-none overflow-y-auto">
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-primary-400 text-center">
           <tr className="text-tertiary-900">
