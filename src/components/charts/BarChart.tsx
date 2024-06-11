@@ -49,7 +49,7 @@ const BarChart = () => {
     const fetchData = async () => {
       try {
 
-        const response = await axios.get<Location[]>('/api/location'); 
+        const response = await axios.get<Location[]>('/api/location/parMois'); 
         const locations = response.data;
 
         const monthlyTotals = Array(12).fill(0); 

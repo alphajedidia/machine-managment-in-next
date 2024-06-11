@@ -21,6 +21,7 @@ const EnginList: React.FC<EnginListProps> = ({ params }) => {
       <div className=" flex justify-center flex-grow h-full w-full  items-center ">
         <DescriEngin title={title} />
       </div>
+
     </div>
    
   );
