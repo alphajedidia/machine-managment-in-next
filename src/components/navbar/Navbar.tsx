@@ -54,8 +54,8 @@ function Navbar({ cartCount }: { cartCount: number; }) {
           containerStyles=" py-[5px] bg-primary-500 text-secondary-600 rounded font-light px-4 text-xl border border-primary-400 hover:scale-105 transition-all"
         />
         <CustomButton
-          iconBefore={<Cart iconStyle="w-6" />}
-          title={cartCount}
+          iconBefore={<Cart iconStyle="w-7" />}
+          title={cartCount>0? cartCount : ""}
           containerStyles=" py-[5px] border border-primary-500 text-secondary-500 rounded font-bold text-xl px-4 bg-primary-500 font-black hover:scale-105 transition-all"
           handleClick={handleCartClick}
         />
