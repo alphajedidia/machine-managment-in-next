@@ -1,14 +1,34 @@
+
 import React from "react";
-import DatepickerComponent from "../Engin/Datepicker";
+import Swal from "sweetalert2";
 
 const Form = () => {
+
+  
+
+  const showSuccessPopup = () => {
+    return Swal.fire({
+      position: "top",
+      icon: "success",
+      title: "Reservation réussie",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  };
+
+  const handleSubmit = (event : any) => {
+    event.preventDefault();
+    showSuccessPopup();
+
+  };
+
   return (
     <div className=" bg-white w-full px-8 rounded-xl shadow-lg">
       <h3 className=" text-3xl font-black  text-secondary-4 00 mb-6 -mt-4 pt-5">
         Procédez au payement
       </h3>
 
-      <form action="">
+      <form onSubmit={handleSubmit}>
         <label htmlFor="nom" className=" text-lg text-secondary-400">
           Nom <span className=" text-red-500">*</span>
         </label>
@@ -93,7 +113,7 @@ const Form = () => {
         </div>
         <div className="pt-6 pb-12 space-y-4 ">
                 <button type="submit" className="w-full p-3 bg-primary-400 text-primary-900 rounded-md hover:bg-primary-500 text-xl">Effectuer le payement</button>
-                <button type="submit" className="w-full p-3 bg-gray-200 text-secondary-500 rounded-md hover:bg-gray-300 text-xl" >Annuler le payement</button>
+                <button type="reset" className="w-full p-3 bg-gray-200 text-secondary-500 rounded-md hover:bg-gray-300 text-xl" >Annuler le payement</button>
             </div>
       </form>
     </div>
