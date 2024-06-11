@@ -36,7 +36,7 @@ export default function Login() {
       "HENRI FRAISE",
   };
   return (
-    <div className="bg-secondary-300 flex justify-center w-screen h-screen text-secondary-400 ">
+    <div className="bg-white flex justify-center w-screen h-screen text-secondary-400 ">
       <div className=" absolute w-[800px] h-[500px]  bg-secondary-400 mt-40 rounded-xl shadow-sm">
        <LoginIntro title={infoLogin.title} subtitle={infoLogin.subtitle} />
        <div className="w-full h-full clip-path-triangle rounded-xl bg-primary-500">

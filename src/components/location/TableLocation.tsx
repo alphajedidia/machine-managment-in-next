@@ -1,8 +1,8 @@
 "use client";
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, useEffect } from "react";
 import { Download } from "../icons";
 import Location from "./Location";
-import { locationData } from "@/app/utils/data";
+import axios from "axios";
 
 interface TableLocationProps {
   Title: string;
@@ -10,10 +10,29 @@ interface TableLocationProps {
 
 const TableLocation: React.FC<TableLocationProps> = ({ Title }) => {
   const [etat, setEtat] = useState(true);
-
+  const [locationData,SetLocationData] = useState([])
+  const [errors,setError] =useState(null)
   const handleRadioChange = (event: ChangeEvent<HTMLInputElement>) => {
     setEtat(event.target.value === "tous");
   };
+
+  useEffect(() => {
+    const fetchLocation = async () => {
+      try {
+        const response = await axios.get(`/api/location`);
+        SetLocationData(response.data);
+        console.log(response.data)
+      } catch (err:any) {
+        setError(err.message || 'Error fetching engines');
+      }
+    };
+
+    fetchLocation();   
+     {console.log(locationData)}
+
+
+
+  }, []);
 
   return (
     <div className="flex rounded-lg flex-col items-stretch">

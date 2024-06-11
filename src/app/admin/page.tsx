@@ -77,7 +77,7 @@ export default function ProtectedPage() {
           <h1 className="text-center text-xl px-1 py-2">TOP ENGINS LOUER</h1>
           <CardTop TopEngin={topEngins} />
         </div>
-        <div className=" w-3/4 border shadow-lg">
+        <div className=" w-3/4 shadow-lg">
           <h1 className="text-center text-xl px-1 py-2">LOCATION EN COURS</h1>
           <div className="relative max-h-[300px] overscroll-x-none overflow-y-auto">
             <Location location={locationData} showAll={false} />

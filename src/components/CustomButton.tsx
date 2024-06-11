@@ -10,7 +10,7 @@ function CustomButton({title ,iconBefore , iconAfter, containerStyles, handleCli
     <button 
         disabled = {false}
         type={"button"}
-        className={` flex items-center space-x-2 ${containerStyles}`}
+        className={` flex items-center space-x-2 active:bg-tertiary-500 ${containerStyles}`}
         onClick={handleClick}
         
     >

@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react';
-import EnginModal from './enginModal';
+import EnginModal from '../../../../components/modal/EnginModal';
 
 
 interface Entrepot {

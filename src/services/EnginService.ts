@@ -4,6 +4,7 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
+
 export const getEnginsByType = async (typeId: string) => {
   try {
     const engins = await prisma.engin.findMany({
@@ -15,8 +16,16 @@ export const getEnginsByType = async (typeId: string) => {
         entrepot: true,
       },
     });
-    return engins;
+
+    const enginsData = engins.map((engin) => ({
+      matricule: engin.matricule,
+      entrepot: engin.entrepot.nom_entrepot, 
+      status: engin.etat ? 'Available' : 'In Use',
+    }));
+
+    return enginsData;
   } catch (error) {
     throw new Error(`Failed to fetch engins for type ${typeId}`);
   }
 };
+
