@@ -16,7 +16,7 @@ function Hero() {
   }
   return (
     <>
-      <div className=" flex h-[80vh] space-x-16 border pb-16 mt-16 pt-12">
+      <div className=" flex h-[80vh] space-x-16 pb-16 mt-16 pt-12">
         <div className=" w-1/2 pl-32 pt-24 pr-6">
           <h1 className=" text-6xl">
             {heroValue.header}

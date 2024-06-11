@@ -17,6 +17,7 @@ const Form = () => {
           name="nom"
           id="nom"
           placeholder=""
+          required
           className=" w-full border border-secondary-200 rounded-lg outline-none px-6 py-2 text-lg mb-4"
         />
         <div className=" flex space-x-6 mb-4">
@@ -41,6 +42,7 @@ const Form = () => {
             <input
               type="tel"
               name="tel"
+              required
               id="tel"
               placeholder=""
               className="w-full border border-secondary-200 rounded-lg outline-none px-6 py-2 text-lg"
@@ -56,6 +58,7 @@ const Form = () => {
             type="text"
             name="nom"
             id="nom"
+            required
             placeholder=""
             className=" w-full border border-secondary-200 rounded-lg outline-none px-6 py-2 text-lg mb-4"
           />
@@ -69,6 +72,7 @@ const Form = () => {
               type="month"
               name="date"
               id="date"
+              required
               placeholder="yyy-mm"
               className="w-full border border-secondary-200 rounded-lg outline-none px-6 py-2 text-lg"
             />
@@ -82,6 +86,7 @@ const Form = () => {
               name="code"
               id="code"
               placeholder=""
+              required
               className="w-full border border-secondary-200 rounded-lg outline-none px-6 py-2 text-lg"
             />
           </div>
