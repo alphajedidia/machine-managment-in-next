@@ -10,7 +10,11 @@ import Carousel from "@/components/carrousel/Carousel";
 
 import { ChangeEvent, useEffect,useState } from "react";
 import axios from "axios";
-
+interface ListTopProps{
+  enginNom:string,
+  prix: number,
+  nombre_location: number,
+}
 
 export default function ProtectedPage() {
   const slides = [
@@ -30,17 +34,19 @@ export default function ProtectedPage() {
    
   ];
   const [topEngins, setTopEngins] = useState<ListTopProps[]>([]);
-
+  const [locationData,SetLocationData] = useState([])
+  const [errors,setError] =useState(null)
   useEffect(() => {
     const fetchTopEngins = async () => {
       try {
+        const responseLocation= await axios.get(`/api/location`);
+        SetLocationData(responseLocation.data);
         const response = await fetch("/api/typeEngin/top");
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
         const data = await response.json();
 
-        // Mappez les données récupérées à la structure requise
         const formattedData = data.map((item: any) => ({
           enginNom: item.nom_engin,
           prix: item.prix_journalier,
@@ -55,7 +61,6 @@ export default function ProtectedPage() {
 
     fetchTopEngins();
   }, []);
-
 
   return (
     <div className="relative flex justify-center items-center w-full h-5/6 mt-5 p-5 overflow-hidden">
