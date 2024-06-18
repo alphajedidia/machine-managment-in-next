@@ -77,8 +77,8 @@ const DescriEngin = ({title}:{title:string}) => {
     <div>
       <div className="h-full  p-2 ">
     <div className="flex flex-grow h-fit w-full">
-      <div className="w-1/3 h-auto border">
-        <img src="/G.jpeg" alt="img" />
+      <div className=" h-auto border">
+        <img src={"/" + info?.image_url} alt="img" className=' w-72 h-52' />
       </div>
       <div className=" flex flex-col justify-around w-2/3 py-4 bg-slate-200">
         <h1 className="text-2xl font-bold text-center">{info?.nom_engin}</h1>

@@ -1,16 +1,19 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { createClient, getClients, ClientData } from '@/services/ClientService';
+import { getClients, ClientData, createClients } from '@/services/ClientService';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
     try {
-      const { nom_client, email, telephone, numero_carte_bancaire, code_securite } = req.body;
-      const clientData: ClientData = { nom_client, email, telephone, numero_carte_bancaire, code_securite };
+      const clients: ClientData[] = req.body;
+      
+      if (!Array.isArray(clients)) {
+        return res.status(400).json({ error: 'Invalid data format. Expected an array of clients.' });
+      }
 
-      const newClient = await createClient(clientData);
-      res.status(201).json(newClient);
-    } catch (error:any) {
-      console.error('Error creating client:', error);
+      const newClients = await createClients(clients);
+      res.status(201).json(newClients);
+    } catch (error: any) {
+      console.error('Error creating clients:', error);
       res.status(500).json({ error: error.message });
     }
   } else if (req.method === 'GET') {

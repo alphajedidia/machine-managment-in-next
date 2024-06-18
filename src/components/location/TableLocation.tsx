@@ -3,6 +3,8 @@ import React, { useState, ChangeEvent, useEffect } from "react";
 import { Download } from "../icons";
 import Location from "./Location";
 import axios from "axios";
+import { locationData } from '@/app/utils/data';
+
 
 interface TableLocationProps {
   Title: string;
@@ -10,7 +12,7 @@ interface TableLocationProps {
 
 const TableLocation: React.FC<TableLocationProps> = ({ Title }) => {
   const [etat, setEtat] = useState(true);
-  const [locationData,SetLocationData] = useState([])
+  const [locationData1,SetLocationData] = useState([])
   const [errors,setError] =useState(null)
   const handleRadioChange = (event: ChangeEvent<HTMLInputElement>) => {
     setEtat(event.target.value === "tous");
@@ -52,7 +54,7 @@ const TableLocation: React.FC<TableLocationProps> = ({ Title }) => {
               />
               <label
                 htmlFor="filter-tous"
-                className="font-medium text-2xl text-gray-900 dark:text-gray-300"
+                className="font-medium text-2xl text-white dark:text-gray-300"
               >
                 Tous
               </label>
@@ -68,7 +70,7 @@ const TableLocation: React.FC<TableLocationProps> = ({ Title }) => {
               />
               <label
                 htmlFor="filter-enCours"
-                className="font-medium text-2xl text-gray-900 dark:text-gray-300"
+                className="font-medium text-2xl text-white dark:text-gray-300"
               >
                 En cours
               </label>

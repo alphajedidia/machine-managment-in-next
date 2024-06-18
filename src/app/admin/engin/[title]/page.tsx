@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Back } from "@/components/icons";
 import DescriEngin from "@/components/description/DescriEngin";
+import { redirect } from "next/dist/server/api-utils";
 ;
 interface EnginListProps {
   params: {
@@ -16,7 +17,7 @@ const EnginList: React.FC<EnginListProps> = ({ params }) => {
   return (
     <div>
       <div className="hover:cursor-pointer">
-        <Back iconStyle="w-20 h-20 " />
+        <Back iconStyle="w-20 h-20 "  />
       </div>
       <div className=" flex justify-center flex-grow h-full w-full  items-center ">
         <DescriEngin title={title} />

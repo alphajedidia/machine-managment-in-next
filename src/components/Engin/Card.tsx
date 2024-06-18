@@ -17,7 +17,7 @@ const Card = ({ title,imgUrl, description1, prixJournalier , onClick , onReserve
         <img src={imgUrl} alt="img" className=" h-52 w-full" />
         <div className=" mx-6 my-3 h-[120px] ">
           <div>
-            <h3 className=" font-black text-secondary-700 text-xl">{title}</h3>
+            <h3 className=" font-black text-secondary-700 text-lg">{title}</h3>
             <p className=" font-semibold mt-2">
               Moteur : <span className=" font-light">{description1.split(' * ')[0]}</span>
             </p>

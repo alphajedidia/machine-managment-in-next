@@ -19,7 +19,7 @@ const Engin = ({
       <div className="flex bg-white  rounded-xl overflow-hidden">
       <div className="w-3/6 ">
         {/* <img src={image_url} alt={nom_engin} /> */}
-        <img src={imgUrl} alt="" className=" h-full " />
+        <img src={imgUrl} alt="" className=" h-full w-[800px] " />
       </div>
       <div className=" w-3/6    ">
         <h3 className=" font-extrabold text-3xl mx-12 my-4 text-secondary-600">

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
 import axios from 'axios';
+import { series } from '@/app/utils/data';
 
 // Définir une interface pour les données de location
 interface Location {
@@ -20,7 +21,7 @@ interface Series {
 }
 
 const BarChart = () => {
-  const [series, setSeries] = useState<Series[]>([
+  const [series1, setSeries] = useState<Series[]>([
     {
       name: 'ENGINS',
       data: Array(12).fill(0) // Initialisation avec des valeurs de 0 pour chaque mois

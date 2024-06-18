@@ -34,6 +34,7 @@ fetchData(
       {typesEngin.map((item, index) => (
             <CardEngin
               key={index} 
+              image_url={item.image_url}
               id_type={item.id_type}
               title={item.nom_engin}
               description={item.description}

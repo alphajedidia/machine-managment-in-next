@@ -1,12 +1,13 @@
 import React from "react";
 import { Status } from "../icons";
 import { formatDate, removeDuplicatesAndJoin } from "@/app/utils/tools";
+import { locationData } from '@/app/utils/data';
 
 interface ListLocationProps {
-  nom_client: string;
-  nom_engins: string[];
-  date_debut: string;
-  date_fin: string;
+  name: string;
+  engin: string;
+  dateInitial: string;
+  dateFinal: string;
 }
 
 interface LocationProps {
@@ -41,21 +42,21 @@ function Location({ location, showAll }: LocationProps) {
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
           {location.map((locationList, index) => {
-            const isOngoing = locationList.date_fin >= today;
+            const isOngoing = locationList.dateFinal >= today;
             if (showAll || isOngoing) {
               return (
                 <tr key={index} className="hover:bg-secondary-100 transition-colors">
                   <td className="px-6 py-4 text-sm font-medium text-gray-900">
-                    {locationList.nom_client}
+                    {locationList.name}
                   </td>
                   <td className="px-6 py-4 text-sm text-gray-500">
-                    {removeDuplicatesAndJoin(locationList.nom_engins)}
+                    {locationList.engin}
                   </td>
                   <td className="px-6 py-4 text-sm text-gray-500">
-                    {formatDate(locationList.date_debut)}
+                    {formatDate(locationList.dateInitial)}
                   </td>
                   <td className="px-6 py-4 text-sm text-gray-500">
-                    {formatDate(locationList.date_fin)}
+                    {formatDate(locationList.dateFinal)}
                   </td>
                   <td className="px-6 py-4 text-sm text-gray-500">
                     <Status etat={isOngoing} size="w-2 h-2" />

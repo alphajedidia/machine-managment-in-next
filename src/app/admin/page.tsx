@@ -1,8 +1,7 @@
 "use client";
 import { Engin } from "@prisma/client";
 import ChartDonut from "@/components/charts/Chart.Donut";
-import {  locationData, series } from "../utils/data";
-
+import {  TopEngin, locationData, series } from "../utils/data";
 import Location from "@/components/location/Location";
 import BarChart from "@/components/charts/BarChart";
 import CardTop from "@/components/card.top/CardTop";
@@ -33,8 +32,8 @@ export default function ProtectedPage() {
 
    
   ];
-  const [topEngins, setTopEngins] = useState<ListTopProps[]>([]);
-  const [locationData,SetLocationData] = useState([])
+  const [topEngins1, setTopEngins] = useState<ListTopProps[]>([]);
+  const [locationData1,SetLocationData] = useState([])
   const [errors,setError] =useState(null)
   useEffect(() => {
     const fetchTopEngins = async () => {
@@ -78,7 +77,7 @@ export default function ProtectedPage() {
       <div className="relative flex flex-col justify-around items-center h-full w-6/12">
         <div className="h-auto w-3/5 border shadow-lg">
           <h1 className="text-center text-xl px-1 py-2">TOP ENGINS LOUER</h1>
-          <CardTop TopEngin={topEngins} />
+          <CardTop TopEngin={TopEngin} />
         </div>
         <div className=" w-3/4 shadow-lg">
           <h1 className="text-center text-xl px-1 py-2">LOCATION EN COURS</h1>

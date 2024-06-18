@@ -10,14 +10,15 @@ export type ClientData = {
   code_securite: string;
 };
 
-export const createClient = async (data: ClientData) => {
+export const createClients = async (data: ClientData[]) => {
   try {
-    const newClient = await prisma.client.create({
-      data
+    const newClients = await prisma.client.createMany({
+      data,
+      skipDuplicates: true, // This will skip creating clients if they already exist
     });
-    return newClient;
+    return newClients;
   } catch (error) {
-    throw new Error('Failed to create client');
+    throw new Error('Failed to create clients');
   }
 };
 

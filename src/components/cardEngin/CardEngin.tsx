@@ -7,14 +7,17 @@ interface CardEnginProps {
   title: string;
   description: string;
   prixJournalier: number;
+  image_url : string;
 }
 
 
-const CardEngin = ({ id_type,title, description, prixJournalier }: CardEnginProps) => {
+const CardEngin = ({ id_type,title, description, prixJournalier,image_url  }: CardEnginProps) => {
+  {console.log(image_url)}
   return (
     <div className=" max-w-80  flex h-fit flex-wrap  rounded-xl overflow-hidden shadow-lg mt-6 mx-3 my-4">
       <div>
-        <img src="/G.jpeg" alt="img" />
+        
+        <img src={"/" + image_url} alt="img" className=" h-52"/>
         <div className=" mx-6 my-2 h-[120px] ">
           <div>
             <h3 className=" font-black text-secondary-700 text-xl">{title}</h3>

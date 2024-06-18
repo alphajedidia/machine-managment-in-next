@@ -1,6 +1,5 @@
 import React from 'react'
 import { Status } from '../icons';
-
 interface ListLocationProps {
   name: string;
   engin: string;

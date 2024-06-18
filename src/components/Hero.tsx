@@ -26,8 +26,8 @@ function Hero() {
           </p>
           <CustomButton title={heroValue.cta} iconAfter={<Arrow iconStyle="w-6" />} containerStyles= " font-bold bg-primary-500 text-secondary-600 px-4 py-2 rounded-md mt-16 mb-5 text-2xl shadow-md hover:scale-105 hover:shadow-lg transition-all " handleClick={handleScroll}/>
         </div>
-        <div className=" w-2/5  bg-slate-400 border border-red-700 mr-28 mt-12 mb-4">
-          {/* <Model/> */}
+        <div className=" w-2/5  mr-28 mt-12 mb-4 rounded-md overflow-hidden shadow-md">
+          <img src="excavator-digging-ground-day-light.jpg" alt="" className=" h-full"/>
         </div>
       </div>
     </>
